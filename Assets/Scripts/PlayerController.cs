@@ -1,8 +1,10 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Networking;
 
-public class PlayerController : MonoBehaviour
+public class PlayerController : NetworkBehaviour
 {
     public float speed;
     float force;
@@ -10,14 +12,35 @@ public class PlayerController : MonoBehaviour
     private Rigidbody2D rgb2;
 
     public bool groundCheck = true;
-    bool facingRight = true;
+    //public bool facingRight = true;
+    //public GameObject projectilePrefab;
+    public ProjectileScript projectile;
+
+    public static PlayerController localPlayerController;
+
+    public LayerMask notTohHit;
 
     // Use this for initialization
     void Start ()
     {
+        if (isLocalPlayer) { localPlayerController = this; }
         rgb2 = gameObject.GetComponent<Rigidbody2D>();
+        //projectilePrefab = (GameObject)Resources.Load("Bullet");
 	}
 	
+    [Command]
+    void CmdFire()
+    {
+        Vector2 mousePosition = new Vector2(Camera.main.ScreenToWorldPoint(Input.mousePosition).x, Camera.main.ScreenToWorldPoint(Input.mousePosition).y);
+        projectile = Instantiate(projectile, transform.position, Quaternion.identity) as ProjectileScript;
+        projectile.SetOwner(this);
+        projectile.mousePosition = mousePosition;
+        NetworkServer.Spawn(projectile.gameObject);
+
+        //RaycastHit2D hit = Physics2D.Raycast(transform.position, mousePosition, 100, notTohHit);
+        Debug.DrawLine(transform.position, mousePosition);
+    }
+
 	// Update is called once per frame
 	void Update ()
     {
@@ -33,6 +56,11 @@ public class PlayerController : MonoBehaviour
         if(Input.GetAxis("Horizontal") < 0)
         {
 
+        }
+
+        if(Input.GetButtonDown("Fire1"))
+        {
+            CmdFire();
         }
 	}
     void OnCollisionEnter2D(Collision2D other)

@@ -1,23 +1,45 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
-public class ProjectileScript : MonoBehaviour
+using UnityEngine.Networking;
+public class ProjectileScript : NetworkBehaviour
 {
+    PlayerController owner;
+    Rigidbody2D rb2;
+    public float speed;
+    public int damage;
 
-    public float shootingRate = 1f;
+    public Vector2 mousePosition;
 
-    private float shootCooldown;
+    public void SetOwner(PlayerController p)
+    { owner = p; }
 
-	// Use this for initialization
-	void Start ()
+    void Start()
     {
-        shootCooldown = 0f;
-	}
-	
-	// Update is called once per frame
-	void Update ()
+        rb2 = GetComponent<Rigidbody2D>();
+    }
+
+    void Update()
     {
-		
-	}
+        Vector2 ownerSpot = new Vector2(owner.transform.position.x, owner.transform.position.y);
+        rb2.transform.Translate((mousePosition - ownerSpot).normalized * speed * Time.deltaTime);
+    }
+
+    void OnCollisionEnter2D(Collision2D collision)
+    {
+        //var hit = collision.gameObject;
+        //var hitPlayer = hit.GetComponent<PlayerController>();
+        //if (hitPlayer != null && hitPlayer != owner)
+        //{
+        //    Debug.Log("Happened");
+        //    //var combat = hit.GetComponent<Combat>();
+        //    //combat.TakeDamage(10);
+        //    Destroy(gameObject);
+        //}
+
+    }
+
+    void OnBecameInvisible()
+    { Destroy(gameObject); }
 }

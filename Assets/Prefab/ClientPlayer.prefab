@@ -27,7 +27,7 @@ GameObject:
   - component: {fileID: 114229619847540376}
   m_Layer: 0
   m_Name: ClientPlayer
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -158,9 +158,6 @@ MonoBehaviour:
   groundCheck: 1
   projectile: {fileID: 114794129645107592, guid: 7581ff74fbd65d34b867445c8dafae75,
     type: 2}
-  notTohHit:
-    serializedVersion: 2
-    m_Bits: 0
 --- !u!212 &212149555792989502
 SpriteRenderer:
   m_ObjectHideFlags: 1

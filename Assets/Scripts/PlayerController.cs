@@ -32,10 +32,11 @@ public class PlayerController : NetworkBehaviour
     void CmdFire()
     {
         Vector2 mousePosition = new Vector2(Camera.main.ScreenToWorldPoint(Input.mousePosition).x, Camera.main.ScreenToWorldPoint(Input.mousePosition).y);
-        projectile = Instantiate(projectile, transform.position, Quaternion.identity) as ProjectileScript;
-        projectile.SetOwner(this);
+
+        ProjectileScript projectileInstance = Instantiate(projectile, transform.position, Quaternion.identity) as ProjectileScript;
+        projectileInstance.SetOwner(this);
         projectile.mousePosition = mousePosition;
-        NetworkServer.Spawn(projectile.gameObject);
+        NetworkServer.Spawn(projectileInstance.gameObject);
 
         //RaycastHit2D hit = Physics2D.Raycast(transform.position, mousePosition, 100, notTohHit);
         Debug.DrawLine(transform.position, mousePosition);

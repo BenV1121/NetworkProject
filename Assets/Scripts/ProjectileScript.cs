@@ -26,20 +26,6 @@ public class ProjectileScript : NetworkBehaviour
         rb2.transform.Translate((mousePosition - ownerSpot).normalized * speed * Time.deltaTime);
     }
 
-    void OnCollisionEnter2D(Collision2D collision)
-    {
-        //var hit = collision.gameObject;
-        //var hitPlayer = hit.GetComponent<PlayerController>();
-        //if (hitPlayer != null && hitPlayer != owner)
-        //{
-        //    Debug.Log("Happened");
-        //    //var combat = hit.GetComponent<Combat>();
-        //    //combat.TakeDamage(10);
-        //    Destroy(gameObject);
-        //}
-
-    }
-
-    void OnBecameInvisible()
+    private void OnBecameInvisible()
     { Destroy(gameObject); }
 }

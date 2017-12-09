@@ -10,9 +10,10 @@ public class EnemyScript : NetworkBehaviour
     public bool isDead;
 
     public GameObject deathEffect;
+    public GameObject hitEffect;
 
-	// Use this for initialization
-	void Start ()
+    // Use this for initialization
+    void Start ()
     {
         isDead = false;
 	}
@@ -35,7 +36,9 @@ public class EnemyScript : NetworkBehaviour
 
             health -= 1;
 
-            if(health <= 0)
+            Destroy(Instantiate(hitEffect, collider.transform.position, gameObject.transform.rotation) as GameObject, 2);
+
+            if (health <= 0)
             {
                 isDead = true;
             }

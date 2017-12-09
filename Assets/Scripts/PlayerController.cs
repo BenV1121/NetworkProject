@@ -18,7 +18,9 @@ public class PlayerController : NetworkBehaviour
 
     public static PlayerController localPlayerController;
 
-    public LayerMask notTohHit;
+    private Action NetUpdate = null;
+
+    private Action Movement = null;
 
     // Use this for initialization
     void Start ()
@@ -27,7 +29,8 @@ public class PlayerController : NetworkBehaviour
         rgb2 = gameObject.GetComponent<Rigidbody2D>();
         //projectilePrefab = (GameObject)Resources.Load("Bullet");
 	}
-	
+
+
     [Command]
     void CmdFire()
     {
@@ -35,7 +38,7 @@ public class PlayerController : NetworkBehaviour
 
         ProjectileScript projectileInstance = Instantiate(projectile, transform.position, Quaternion.identity) as ProjectileScript;
         projectileInstance.SetOwner(this);
-        projectile.mousePosition = mousePosition;
+        projectile.mousePositionP = mousePosition;
         NetworkServer.Spawn(projectileInstance.gameObject);
 
         //RaycastHit2D hit = Physics2D.Raycast(transform.position, mousePosition, 100, notTohHit);

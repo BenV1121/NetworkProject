@@ -22,6 +22,7 @@ GameObject:
   - component: {fileID: 212492334613579640}
   - component: {fileID: 60039921931591132}
   - component: {fileID: 50981712214804008}
+  - component: {fileID: 114120365923299244}
   m_Layer: 0
   m_Name: Target
   m_TagString: Enemy
@@ -71,7 +72,7 @@ PolygonCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -90,6 +91,22 @@ PolygonCollider2D:
       - {x: -0.5, y: -0.000000021855694}
       - {x: 0.00000004371139, y: -0.5}
       - {x: 0.5, y: 0.0000000059624403}
+--- !u!114 &114120365923299244
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1304932673170094}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dbbf144d0b0f180408914b9ce6497aa7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 5
+  isDead: 0
+  deathEffect: {fileID: 1749791422267346, guid: 6396b4a7e3f1b39408cd287b5e6b8b97,
+    type: 2}
+  hitEffect: {fileID: 1163733057714060, guid: 0cb46a9d311a91748b5988170404eec6, type: 2}
 --- !u!212 &212492334613579640
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -124,7 +141,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 402d334ba5faa2f4da5dcceb5b33d610, type: 3}
+  m_Sprite: {fileID: 21300000, guid: d7f0e5935fe3ab64a861053a63938ec7, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0

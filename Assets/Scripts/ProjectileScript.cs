@@ -10,7 +10,9 @@ public class ProjectileScript : NetworkBehaviour
     public float speed;
     public int damage;
 
-    public Vector2 mousePosition;
+    public Vector2 mousePositionP;
+
+    public GameObject hitEffect;
 
     public void SetOwner(PlayerController p)
     { owner = p; }
@@ -23,7 +25,7 @@ public class ProjectileScript : NetworkBehaviour
     void Update()
     {
         Vector2 ownerSpot = new Vector2(owner.transform.position.x, owner.transform.position.y);
-        rb2.transform.Translate((mousePosition - ownerSpot).normalized * speed * Time.deltaTime);
+        rb2.transform.Translate((mousePositionP - ownerSpot).normalized * speed * Time.deltaTime);
     }
 
     private void OnBecameInvisible()

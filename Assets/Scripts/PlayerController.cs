@@ -34,24 +34,16 @@ public class PlayerController : NetworkBehaviour
 
     }
 
+    // Get the direction to fire the bullet in
     private Vector2 bulletDirectionVector
     {
         get
         {
-            RaycastHit2D hit;
-
-            hit = Physics2D.Raycast(Camera.main.transform.position, Camera.main.ScreenToWorldPoint(Input.mousePosition));
-
-            Vector2 flatHitPoint = new Vector2(hit.point.x, hit.point.y);
             Vector2 flatPosition = new Vector2(transform.position.x, transform.position.y);
+            Vector2 targetPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 
-            return (flatHitPoint - flatPosition).normalized;
+            return (targetPosition - flatPosition).normalized;
         }
-    }
-
-    private Vector2 bulletSpawnVector
-    {
-        get { return new Vector2(transform.position.x, transform.position.y) + bulletDirectionVector; }
     }
 
     void NetworkSetup()
@@ -83,22 +75,20 @@ public class PlayerController : NetworkBehaviour
     {
         if(shootInput)
         {
-            CmdFire(bulletSpawnVector);
+            CmdFire(bulletDirectionVector);
         }
     }
 
     [Command]
     private void CmdFire(Vector2 dir)
     {
-        Vector2 mousePosition = new Vector2(Camera.main.ScreenToWorldPoint(Input.mousePosition).x, Camera.main.ScreenToWorldPoint(Input.mousePosition).y);
-
-        ProjectileScript projectileInstance = Instantiate(projectile, dir, Quaternion.identity) as ProjectileScript;
+        ProjectileScript projectileInstance = Instantiate(projectile, transform.position, Quaternion.identity) as ProjectileScript;
         projectileInstance.SetOwner(this);
-        projectile.mousePositionP = mousePosition;
+        projectile.direction = dir;
         NetworkServer.Spawn(projectileInstance.gameObject);
 
         //RaycastHit2D hit = Physics2D.Raycast(transform.position, mousePosition, 100, notTohHit);
-        Debug.DrawLine(transform.position, mousePosition);
+        Debug.DrawLine(transform.position, dir);
     }
 
     // Update is called once per frame
@@ -118,9 +108,9 @@ public class PlayerController : NetworkBehaviour
 
         }
 
-        if(Input.GetButtonDown("Fire1"))
+        if (Input.GetButtonDown("Fire1"))
         {
-            CmdFire(bulletSpawnVector);
+            CmdFire(bulletDirectionVector);
         }
     }
     void OnCollisionEnter2D(Collision2D other)

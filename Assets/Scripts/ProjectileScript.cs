@@ -26,9 +26,8 @@ public class ProjectileScript : NetworkBehaviour
 
     private void Update()
     {
-        //Vector2 playerPosition = new Vector2(player.transform.position.x, player.transform.position.y);
-        //rb2.transform.Translate((mousePositionP - playerPosition).normalized * speed * Time.deltaTime);
-        rb2.velocity = transform.right * speed;
+        Vector2 playerPosition = new Vector2(player.transform.position.x, player.transform.position.y);
+        rb2.transform.Translate((mousePositionP - playerPosition).normalized * speed * Time.deltaTime);
     }
 
     private void OnBecameInvisible()

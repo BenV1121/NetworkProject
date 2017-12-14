@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Networking;
+using UnityEngine.EventSystems;
 
 public class PlayerController : NetworkBehaviour
 {
@@ -28,14 +29,18 @@ public class PlayerController : NetworkBehaviour
         if (isLocalPlayer) { localPlayerController = this; }
         rgb2 = gameObject.GetComponent<Rigidbody2D>();
         //projectilePrefab = (GameObject)Resources.Load("Bullet");
-	}
+
+        NetworkSetup();
+
+    }
+
     private Vector2 bulletDirectionVector
     {
         get
         {
             RaycastHit2D hit;
 
-            hit = Physics2D.Raycast(Camera.main.transform.position ,Camera.main.ScreenToWorldPoint(Input.mousePosition));
+            hit = Physics2D.Raycast(Camera.main.transform.position, Camera.main.ScreenToWorldPoint(Input.mousePosition));
 
             Vector2 flatHitPoint = new Vector2(hit.point.x, hit.point.y);
             Vector2 flatPosition = new Vector2(transform.position.x, transform.position.y);
@@ -49,8 +54,30 @@ public class PlayerController : NetworkBehaviour
         get { return new Vector2(transform.position.x, transform.position.y) + bulletDirectionVector; }
     }
 
+    void NetworkSetup()
+    {
+        if (isLocalPlayer)
+        {
+            PlayerManager.localPlayer = this;
+
+            SetLocalDelegates();
+        }
+    }
+
+        void SetLocalDelegates()
+    {
+        // Set the net update to local update.
+        NetUpdate += LocalUpdate;
+    }
+
+        void LocalUpdate()
+    { ProcessInput(); }
+
     bool shootInput
     { get { return Input.GetButtonDown("Fire1"); } }
+
+    void ProcessInput()
+    { requestShoot(); }
 
     void requestShoot()
     {
@@ -95,7 +122,7 @@ public class PlayerController : NetworkBehaviour
         {
             CmdFire(bulletSpawnVector);
         }
-	}
+    }
     void OnCollisionEnter2D(Collision2D other)
     {
         //if()

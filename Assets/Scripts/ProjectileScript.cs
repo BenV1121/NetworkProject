@@ -26,7 +26,8 @@ public class ProjectileScript : NetworkBehaviour
 
     private void Update()
     {
-        rb2.transform.Translate(direction * speed * Time.deltaTime);
+        Debug.Log("Dir:" + direction);
+        rb2.transform.Translate(direction * speed * Time.deltaTime, Space.World);
     }
 
     private void OnBecameInvisible()

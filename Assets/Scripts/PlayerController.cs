@@ -82,9 +82,10 @@ public class PlayerController : NetworkBehaviour
     [Command]
     private void CmdFire(Vector2 dir)
     {
+        Debug.Log("Recv: " + dir);
         ProjectileScript projectileInstance = Instantiate(projectile, transform.position, Quaternion.identity) as ProjectileScript;
         projectileInstance.SetOwner(this);
-        projectile.direction = dir;
+        projectileInstance.direction = dir;
         NetworkServer.Spawn(projectileInstance.gameObject);
 
         //RaycastHit2D hit = Physics2D.Raycast(transform.position, mousePosition, 100, notTohHit);
@@ -110,6 +111,7 @@ public class PlayerController : NetworkBehaviour
 
         if (Input.GetButtonDown("Fire1"))
         {
+            Debug.Log("Sen: " + bulletDirectionVector);
             CmdFire(bulletDirectionVector);
         }
     }

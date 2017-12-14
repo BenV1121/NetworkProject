@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEngine.Networking;
 public class ProjectileScript : NetworkBehaviour
 {
-    PlayerController owner;
+    PlayerController player;
     Rigidbody2D rb2;
     public float speed;
     public int damage;
@@ -14,18 +14,21 @@ public class ProjectileScript : NetworkBehaviour
 
     public GameObject hitEffect;
 
+    public static ProjectileScript localProjectileScript;
+
     public void SetOwner(PlayerController p)
-    { owner = p; }
+    { player = p; }
 
     void Start()
     {
         rb2 = GetComponent<Rigidbody2D>();
     }
 
-    void Update()
+    private void Update()
     {
-        Vector2 ownerSpot = new Vector2(owner.transform.position.x, owner.transform.position.y);
-        rb2.transform.Translate((mousePositionP - ownerSpot).normalized * speed * Time.deltaTime);
+        //Vector2 playerPosition = new Vector2(player.transform.position.x, player.transform.position.y);
+        //rb2.transform.Translate((mousePositionP - playerPosition).normalized * speed * Time.deltaTime);
+        rb2.velocity = transform.right * speed;
     }
 
     private void OnBecameInvisible()

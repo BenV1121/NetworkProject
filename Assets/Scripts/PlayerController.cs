@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Networking;
+using UnityEngine.EventSystems;
 
 public class PlayerController : NetworkBehaviour
 {
@@ -28,25 +29,70 @@ public class PlayerController : NetworkBehaviour
         if (isLocalPlayer) { localPlayerController = this; }
         rgb2 = gameObject.GetComponent<Rigidbody2D>();
         //projectilePrefab = (GameObject)Resources.Load("Bullet");
-	}
 
+        NetworkSetup();
+
+    }
+
+    // Get the direction to fire the bullet in
+    private Vector2 bulletDirectionVector
+    {
+        get
+        {
+            Vector2 flatPosition = new Vector2(transform.position.x, transform.position.y);
+            Vector2 targetPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+
+            return (targetPosition - flatPosition).normalized;
+        }
+    }
+
+    void NetworkSetup()
+    {
+        if (isLocalPlayer)
+        {
+            PlayerManager.localPlayer = this;
+
+            SetLocalDelegates();
+        }
+    }
+
+        void SetLocalDelegates()
+    {
+        // Set the net update to local update.
+        NetUpdate += LocalUpdate;
+    }
+
+        void LocalUpdate()
+    { ProcessInput(); }
+
+    bool shootInput
+    { get { return Input.GetButtonDown("Fire1"); } }
+
+    void ProcessInput()
+    { requestShoot(); }
+
+    void requestShoot()
+    {
+        if(shootInput)
+        {
+            CmdFire(bulletDirectionVector);
+        }
+    }
 
     [Command]
-    void CmdFire()
+    private void CmdFire(Vector2 dir)
     {
-        Vector2 mousePosition = new Vector2(Camera.main.ScreenToWorldPoint(Input.mousePosition).x, Camera.main.ScreenToWorldPoint(Input.mousePosition).y);
-
         ProjectileScript projectileInstance = Instantiate(projectile, transform.position, Quaternion.identity) as ProjectileScript;
         projectileInstance.SetOwner(this);
-        projectile.mousePositionP = mousePosition;
+        projectile.direction = dir;
         NetworkServer.Spawn(projectileInstance.gameObject);
 
         //RaycastHit2D hit = Physics2D.Raycast(transform.position, mousePosition, 100, notTohHit);
-        Debug.DrawLine(transform.position, mousePosition);
+        Debug.DrawLine(transform.position, dir);
     }
 
-	// Update is called once per frame
-	void Update ()
+    // Update is called once per frame
+    private void Update ()
     {
         float move = Input.GetAxis("Horizontal");
         force = move * speed;
@@ -62,11 +108,11 @@ public class PlayerController : NetworkBehaviour
 
         }
 
-        if(Input.GetButtonDown("Fire1"))
+        if (Input.GetButtonDown("Fire1"))
         {
-            CmdFire();
+            CmdFire(bulletDirectionVector);
         }
-	}
+    }
     void OnCollisionEnter2D(Collision2D other)
     {
         //if()

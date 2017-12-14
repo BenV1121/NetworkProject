@@ -5,27 +5,28 @@ using UnityEngine;
 using UnityEngine.Networking;
 public class ProjectileScript : NetworkBehaviour
 {
-    PlayerController owner;
+    PlayerController player;
     Rigidbody2D rb2;
     public float speed;
     public int damage;
 
-    public Vector2 mousePositionP;
+    public Vector2 direction;
 
     public GameObject hitEffect;
 
-    public void SetOwner(PlayerController p)
-    { owner = p; }
+    public static ProjectileScript localProjectileScript;
 
-    void Start()
+    public void SetOwner(PlayerController p)
+    { player = p; }
+
+    private void Start()
     {
         rb2 = GetComponent<Rigidbody2D>();
     }
 
-    void Update()
+    private void Update()
     {
-        Vector2 ownerSpot = new Vector2(owner.transform.position.x, owner.transform.position.y);
-        rb2.transform.Translate((mousePositionP - ownerSpot).normalized * speed * Time.deltaTime);
+        rb2.transform.Translate(direction * speed * Time.deltaTime);
     }
 
     private void OnBecameInvisible()

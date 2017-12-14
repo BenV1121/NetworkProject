@@ -27,7 +27,7 @@ public class DefaultGun : Gun {
         {
             ProjectileScript projectileInstance = Instantiate(projectile, transform.position, Quaternion.identity) as ProjectileScript;
             projectileInstance.SetOwner(GetOwner());
-            projectile.mousePositionP = mousePosition;
+            //projectile.mousePositionP = mousePosition;
             NetworkServer.Spawn(projectileInstance.gameObject);
 
             //RaycastHit2D hit = Physics2D.Raycast(transform.position, mousePosition, 100, notTohHit);

@@ -10,6 +10,8 @@ public class Bullet : MonoBehaviour
     public float speed = 70f;
     public GameObject impactEffect;
 
+    public float damage = 1;
+
     public void Seek(Transform _target)
     {
         target = _target;
@@ -42,7 +44,10 @@ public class Bullet : MonoBehaviour
         GameObject effectIns = (GameObject)Instantiate(impactEffect, transform.position, transform.rotation);
         Destroy(effectIns, 2f);
 
-        Destroy(target.gameObject);
-        Destroy(gameObject);
+        if(target.gameObject.GetComponent <PlayerController>())
+        {
+            target.gameObject.GetComponent<PlayerController>().setHealth(target.gameObject.GetComponent<PlayerController>().health - damage);
+        }
+        Network.Destroy(gameObject);
     }
 }

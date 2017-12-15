@@ -95,12 +95,16 @@ public class PlayerController : NetworkBehaviour
     // Update is called once per frame
     private void Update ()
     {
-        float move = Input.GetAxis("Horizontal");
-        force = move * speed;
-        transform.Translate(new Vector2(force, 0));
+        if (hasAuthority)
+        { 
+            float move = Input.GetAxis("Horizontal");
+            force = move * speed;
+            transform.Translate(new Vector2(force, 0));
+        }
 
         if (Input.GetKeyDown("space") && groundCheck)
         {
+            if(hasAuthority)
             rgb2.AddForce(Vector2.up * 300);
         }
 
@@ -121,14 +125,16 @@ public class PlayerController : NetworkBehaviour
         {
             if (Input.GetButton("Fire1"))
             {
-                mf.CmdFire(bulletDirectionVector);
+                if (hasAuthority)
+                    mf.CmdFire(bulletDirectionVector);
             }
         }
         else if (isSF == true)
         {
             if (Input.GetButtonDown("Fire1"))
             {
-                sf.CmdFire(bulletDirectionVector);
+                if (hasAuthority)
+                    sf.CmdFire(bulletDirectionVector);
             }
         }
 

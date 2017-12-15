@@ -35,7 +35,7 @@ public class Shotgun : Gun {
             //spawn first bullet
             ProjectileScript projectileInstance = Instantiate(projectile, transform.position, Quaternion.identity) as ProjectileScript;
             projectileInstance.SetOwner(GetOwner());
-            projectile.mousePositionP = mousePosition;
+            //projectile.mousePositionP = mousePosition;
             NetworkServer.Spawn(projectileInstance.gameObject);
 
             //spawn other bullets
@@ -46,7 +46,7 @@ public class Shotgun : Gun {
             {
                 ProjectileScript projectileInstanceA = Instantiate(projectile, transform.position, Quaternion.identity) as ProjectileScript;
                 projectileInstance.SetOwner(GetOwner());
-                projectile.mousePositionP = mousePosition;// + Vector2(spreadDeviation);
+               //projectile.mousePositionP = mousePosition;// + Vector2(spreadDeviation);
                 NetworkServer.Spawn(projectileInstance.gameObject);
             }
 

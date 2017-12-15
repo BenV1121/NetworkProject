@@ -146,7 +146,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 25
   damage: 1
-  mousePositionP: {x: -2.396135, y: 0.63573897}
+  direction: {x: 0.27926248, y: 0.9602148}
   hitEffect: {fileID: 1163733057714060, guid: 0cb46a9d311a91748b5988170404eec6, type: 2}
 --- !u!212 &212953602389543812
 SpriteRenderer:
@@ -180,7 +180,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: e38691114d01b604d8cfb073bd1bb998, type: 3}
+  m_Sprite: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
   m_Color: {r: 1, g: 0.68275857, b: 0, a: 1}
   m_FlipX: 0
   m_FlipY: 0

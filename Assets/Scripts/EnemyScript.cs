@@ -32,7 +32,7 @@ public class EnemyScript : NetworkBehaviour
     {
         if (collider.gameObject.tag == "Bullet")
         {
-            Destroy(collider.gameObject);
+            //Destroy(collider.gameObject);
 
             health -= 1;
 

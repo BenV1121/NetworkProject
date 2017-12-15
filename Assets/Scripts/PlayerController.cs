@@ -10,6 +10,16 @@ public class PlayerController : NetworkBehaviour
     public float speed;
     float force;
 
+    //Default values, used for when a power-up wears off.
+    float baseSpeed;
+    float baseJump;
+
+    //How powerful the jump is.
+    public float jumpForce = 300;
+
+    public float maxHealth = 10;
+    float _health;
+
     private Rigidbody2D rgb2;
 
     public bool groundCheck = true;
@@ -22,6 +32,9 @@ public class PlayerController : NetworkBehaviour
     private Action NetUpdate = null;
 
     public Gun gun;
+
+    public float health
+    { get { return _health; } }
 
     DefaultGun df;
     MachineGun mf;
@@ -37,6 +50,11 @@ public class PlayerController : NetworkBehaviour
         if (isLocalPlayer) { localPlayerController = this; }
         rgb2 = gameObject.GetComponent<Rigidbody2D>();
         //projectilePrefab = (GameObject)Resources.Load("Bullet");
+
+        //initialize defaults
+        _health = 1;
+        baseSpeed = speed;
+        baseJump = jumpForce;
 
         gun = GetComponent(typeof(Gun)) as Gun;
         df = GetComponent<DefaultGun>();
@@ -155,4 +173,13 @@ public class PlayerController : NetworkBehaviour
     {
         groundCheck = false;
     }
+
+    //
+    //SETTERS
+    //
+
+    //Only let the server modify health
+    [Server]
+    public void setHealth(float h) { _health = h; }
+
 }

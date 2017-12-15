@@ -210,7 +210,7 @@ MonoBehaviour:
   projectile: {fileID: 114794129645107592, guid: 7581ff74fbd65d34b867445c8dafae75,
     type: 2}
   gun: {fileID: 0}
-  isDF: 0
+  isDF: 1
   isMF: 0
   isSF: 0
 --- !u!212 &212149555792989502

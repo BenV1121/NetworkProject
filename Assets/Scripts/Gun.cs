@@ -10,17 +10,19 @@ public abstract class Gun : NetworkBehaviour {
     private PlayerController owner;
 
 	// Use this for initialization
-	void Start () {
-		
+	void Start ()
+    {
+        gunPoint = transform;
 	}
 	
 	// Update is called once per frame
-	void Update () {
+	void Update ()
+    {
 		
 	}
 
     [Command]
-    public abstract void CmdFire(Vector2 mousePosition);
+    public abstract void CmdFire(Vector2 dir);
 
     public void SetOwner(PlayerController p)
     { owner = p; }

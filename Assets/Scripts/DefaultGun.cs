@@ -9,29 +9,31 @@ public class DefaultGun : Gun {
     public float fireCooldown;
     private float fireTimer = 0;
 
-    // Use this for initialization
-    void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
+    private Vector2 bulletDirectionVector
+    {
+        get
+        {
+            Vector2 flatPosition = new Vector2(transform.position.x, transform.position.y);
+            Vector2 targetPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+
+            return (targetPosition - flatPosition).normalized;
+        }
+    }
+
+    // Update is called once per frame
+    void Update () {
         if (fireTimer > 0)
             fireTimer -= Time.deltaTime;
     }
 
     [Command]
-    public override void CmdFire(Vector2 mousePosition)
+    public override void CmdFire(Vector2 dir)
     {
         if (fireTimer <= 0)
         {
             ProjectileScript projectileInstance = Instantiate(projectile, transform.position, Quaternion.identity) as ProjectileScript;
-            projectileInstance.SetOwner(GetOwner());
-            projectile.mousePositionP = mousePosition;
+            projectileInstance.direction = dir;
             NetworkServer.Spawn(projectileInstance.gameObject);
-
-            //RaycastHit2D hit = Physics2D.Raycast(transform.position, mousePosition, 100, notTohHit);
-            Debug.DrawLine(transform.position, mousePosition);
 
             fireTimer = fireCooldown;
         }

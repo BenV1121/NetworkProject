@@ -21,7 +21,15 @@ public class PlayerController : NetworkBehaviour
 
     private Action NetUpdate = null;
 
-    private Action Movement = null;
+    public Gun gun;
+
+    DefaultGun df;
+    MachineGun mf;
+    Shotgun    sf;
+
+    public bool isDF;
+    public bool isMF;
+    public bool isSF;
 
     // Use this for initialization
     void Start ()
@@ -30,8 +38,16 @@ public class PlayerController : NetworkBehaviour
         rgb2 = gameObject.GetComponent<Rigidbody2D>();
         //projectilePrefab = (GameObject)Resources.Load("Bullet");
 
+        gun = GetComponent(typeof(Gun)) as Gun;
+        df = GetComponent<DefaultGun>();
+        mf = GetComponent<MachineGun>();
+        sf = GetComponent<Shotgun>();
+
         NetworkSetup();
 
+        isDF = true;
+        isMF = false;
+        isSF = false;
     }
 
     // Get the direction to fire the bullet in
@@ -56,40 +72,24 @@ public class PlayerController : NetworkBehaviour
         }
     }
 
-        void SetLocalDelegates()
+    void SetLocalDelegates()
     {
         // Set the net update to local update.
         NetUpdate += LocalUpdate;
     }
 
-        void LocalUpdate()
-    { ProcessInput(); }
-
-    bool shootInput
-    { get { return Input.GetButtonDown("Fire1"); } }
-
-    void ProcessInput()
-    { requestShoot(); }
-
-    void requestShoot()
+    void LocalUpdate()
     {
-        if(shootInput)
-        {
-            CmdFire(bulletDirectionVector);
-        }
+
     }
 
     [Command]
     private void CmdFire(Vector2 dir)
     {
-        Debug.Log("Recv: " + dir);
         ProjectileScript projectileInstance = Instantiate(projectile, transform.position, Quaternion.identity) as ProjectileScript;
-        projectileInstance.SetOwner(this);
+        //projectileInstance.SetOwner(this);
         projectileInstance.direction = dir;
         NetworkServer.Spawn(projectileInstance.gameObject);
-
-        //RaycastHit2D hit = Physics2D.Raycast(transform.position, mousePosition, 100, notTohHit);
-        Debug.DrawLine(transform.position, dir);
     }
 
     // Update is called once per frame
@@ -109,11 +109,30 @@ public class PlayerController : NetworkBehaviour
 
         }
 
-        if (Input.GetButtonDown("Fire1"))
+        if (isDF == true)
         {
-            Debug.Log("Sen: " + bulletDirectionVector);
-            CmdFire(bulletDirectionVector);
+            if (Input.GetButtonDown("Fire1"))
+            {
+                if(hasAuthority)
+                    df.CmdFire(bulletDirectionVector);
+            }
         }
+        else if (isMF == true)
+        {
+            if (Input.GetButton("Fire1"))
+            {
+                mf.CmdFire(bulletDirectionVector);
+            }
+        }
+        else if (isSF == true)
+        {
+            if (Input.GetButtonDown("Fire1"))
+            {
+                sf.CmdFire(bulletDirectionVector);
+            }
+        }
+
+
     }
     void OnCollisionEnter2D(Collision2D other)
     {

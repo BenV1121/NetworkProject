@@ -28,30 +28,30 @@ public class Shotgun : Gun {
     }
 
     [Command]
-    public override void CmdFire(Vector2 mousePosition)
+    public override void CmdFire(Vector2 dir)
     {
         if (fireTimer <= 0)
         {
             //spawn first bullet
             ProjectileScript projectileInstance = Instantiate(projectile, transform.position, Quaternion.identity) as ProjectileScript;
             projectileInstance.SetOwner(GetOwner());
-            projectile.mousePositionP = mousePosition;
+            projectileInstance.direction = dir;
             NetworkServer.Spawn(projectileInstance.gameObject);
 
             //spawn other bullets
             //NOTE: if the bullets come out kinda weird...
             //make it so that all the bullets are spawned and don't move all at once...
             //then make them start moving all at once
-            for(int i = 0; i < extraBulletHalfCount; i++)
+            for (int i = 0; i < extraBulletHalfCount; i++)
             {
                 ProjectileScript projectileInstanceA = Instantiate(projectile, transform.position, Quaternion.identity) as ProjectileScript;
                 projectileInstance.SetOwner(GetOwner());
-                projectile.mousePositionP = mousePosition;// + Vector2(spreadDeviation);
-                NetworkServer.Spawn(projectileInstance.gameObject);
+                projectileInstanceA.direction = dir;// + Vector2(spreadDeviation);
+                NetworkServer.Spawn(projectileInstanceA.gameObject);
             }
 
             //RaycastHit2D hit = Physics2D.Raycast(transform.position, mousePosition, 100, notTohHit);
-            Debug.DrawLine(transform.position, mousePosition);
+            Debug.DrawLine(transform.position, dir);
 
             fireTimer = fireCooldown;
         }

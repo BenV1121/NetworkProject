@@ -25,6 +25,9 @@ GameObject:
   - component: {fileID: 114848170595277336}
   - component: {fileID: 114468075682475726}
   - component: {fileID: 114229619847540376}
+  - component: {fileID: 114768611168934354}
+  - component: {fileID: 114638122882562716}
+  - component: {fileID: 114489451149207520}
   m_Layer: 0
   m_Name: ClientPlayer
   m_TagString: Player
@@ -143,6 +146,52 @@ MonoBehaviour:
     i15: 18
   m_ServerOnly: 0
   m_LocalPlayerAuthority: 0
+--- !u!114 &114489451149207520
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1387369648343074}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 631824a2ce26988449a4f97fc316796c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gunPoint: {fileID: 0}
+  projectile: {fileID: 114794129645107592, guid: 7581ff74fbd65d34b867445c8dafae75,
+    type: 2}
+  spreadDeviation: 0
+  fireCooldown: 0
+  extraBulletHalfCount: 0
+--- !u!114 &114638122882562716
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1387369648343074}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 824a476b07585f446adf49a1c5b6f358, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gunPoint: {fileID: 0}
+  projectile: {fileID: 114794129645107592, guid: 7581ff74fbd65d34b867445c8dafae75,
+    type: 2}
+--- !u!114 &114768611168934354
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1387369648343074}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 48fb77cc507b96649969faf4adbf9e87, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gunPoint: {fileID: 0}
+  projectile: {fileID: 114794129645107592, guid: 7581ff74fbd65d34b867445c8dafae75,
+    type: 2}
+  fireCooldown: 0
 --- !u!114 &114848170595277336
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -158,6 +207,10 @@ MonoBehaviour:
   groundCheck: 1
   projectile: {fileID: 114794129645107592, guid: 7581ff74fbd65d34b867445c8dafae75,
     type: 2}
+  gun: {fileID: 0}
+  isDF: 0
+  isMF: 0
+  isSF: 0
 --- !u!212 &212149555792989502
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -167,7 +220,6 @@ SpriteRenderer:
   m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0
-  m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -183,7 +235,6 @@ SpriteRenderer:
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
-  m_StitchLightmapSeams: 0
   m_SelectedEditorRenderState: 0
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5

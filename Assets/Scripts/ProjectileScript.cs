@@ -26,10 +26,13 @@ public class ProjectileScript : NetworkBehaviour
 
     private void Update()
     {
-        Debug.Log("Dir:" + direction);
         rb2.transform.Translate(direction * speed * Time.deltaTime, Space.World);
     }
 
     private void OnBecameInvisible()
-    { Destroy(gameObject); }
+    {
+        if (gameObject != PlayerManager.localPlayer)
+            if (PlayerManager.localPlayer.isServer)
+                Destroy(gameObject);
+    }
 }

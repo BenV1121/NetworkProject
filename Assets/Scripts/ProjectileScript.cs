@@ -31,8 +31,8 @@ public class ProjectileScript : NetworkBehaviour
 
     private void OnBecameInvisible()
     {
-        if (gameObject != PlayerManager.localPlayer)
-            if (PlayerManager.localPlayer.isServer)
-                Destroy(gameObject);
+       // if (gameObject != PlayerManager.localPlayer)
+            //if (PlayerManager.localPlayer.isServer)
+                //Destroy(gameObject);
     }
 }

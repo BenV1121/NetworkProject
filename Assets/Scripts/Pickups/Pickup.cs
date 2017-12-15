@@ -1,22 +1,28 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Networking;
 
-public class Pickup : MonoBehaviour {
+public abstract class Pickup : NetworkBehaviour {
 
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+    protected PlayerController pc;
 
-    void OnTriggerEnter2D(Collider2D other)
+    [Command]
+    public abstract void CmdPickupEffect();
+
+    [Server]
+    protected void Die()
     {
-        if (other.gameObject.CompareTag("Player"))
-            Destroy(gameObject);
+        NetworkServer.Destroy(gameObject);
+    }
+
+    void OnCollisionEnter2D(Collider2D other)
+    {
+        if (other.gameObject.tag == ("Player"))
+        {
+            pc = other.gameObject.GetComponent<PlayerController>();
+            CmdPickupEffect();
+            Die();
+        }
     }
 }

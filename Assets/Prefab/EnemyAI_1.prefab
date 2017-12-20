@@ -124,7 +124,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   range: 11.13
-  fireRate: 10
+  fireRate: 2
   enemyTag: Player
   partToRotate: {fileID: 4967482581128596}
   turnSpeed: 10

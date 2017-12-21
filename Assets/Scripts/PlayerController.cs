@@ -113,6 +113,9 @@ public class PlayerController : NetworkBehaviour
     // Update is called once per frame
     private void Update ()
     {
+        if (!isLocalPlayer)
+            return;
+
         if (hasAuthority)
         { 
             float move = Input.GetAxis("Horizontal");

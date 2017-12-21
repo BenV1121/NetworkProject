@@ -10,11 +10,15 @@ public class ProjectileScript : NetworkBehaviour
     public float speed;
     public int damage;
 
+    public float delayTime;
+
     public Vector2 direction;
 
     public GameObject hitEffect;
 
     public static ProjectileScript localProjectileScript;
+
+    EnemyScript enemy;
 
     public void SetOwner(PlayerController p)
     { player = p; }
@@ -30,6 +34,22 @@ public class ProjectileScript : NetworkBehaviour
     }
     private void OnBecameInvisible()
     {
-        NetworkServer.Destroy(gameObject);
+        StartCoroutine(DestroyAfterTime(1));
+    }
+
+    private void OnTriggerEnter2D(Collider2D collider)
+    {
+        if (collider.gameObject.tag == "Enemy")
+        {
+            StartCoroutine(DestroyAfterTime(2));
+
+            Destroy(Instantiate(hitEffect, transform.position, gameObject.transform.rotation) as GameObject, 2);
+        }
+    }
+
+    IEnumerator DestroyAfterTime(float time)
+    {
+        yield return new WaitForSeconds(time);
+        Destroy(gameObject);
     }
 }

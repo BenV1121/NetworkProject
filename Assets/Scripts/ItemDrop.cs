@@ -32,11 +32,7 @@ public class ItemDrop : MonoBehaviour
     {
         if (collider.gameObject.tag == "Bullet")
         {
-            Destroy(collider.gameObject);
-
             health -= 1;
-
-            Destroy(Instantiate(hitEffect, collider.transform.position, gameObject.transform.rotation) as GameObject, 2);
 
             if (health <= 0)
             {

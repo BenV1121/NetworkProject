@@ -23,6 +23,7 @@ GameObject:
   - component: {fileID: 60039921931591132}
   - component: {fileID: 50981712214804008}
   - component: {fileID: 114120365923299244}
+  - component: {fileID: 114644139758068418}
   m_Layer: 0
   m_Name: Target
   m_TagString: Enemy
@@ -37,7 +38,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1304932673170094}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -6.21, y: 3.07, z: 0}
+  m_LocalPosition: {x: 7.7, y: 3.07, z: 0}
   m_LocalScale: {x: 2.517182, y: 2.5171816, z: 2.5171816}
   m_Children: []
   m_Father: {fileID: 0}
@@ -107,6 +108,38 @@ MonoBehaviour:
   deathEffect: {fileID: 1749791422267346, guid: 6396b4a7e3f1b39408cd287b5e6b8b97,
     type: 2}
   hitEffect: {fileID: 1163733057714060, guid: 0cb46a9d311a91748b5988170404eec6, type: 2}
+--- !u!114 &114644139758068418
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1304932673170094}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 372142912, guid: dc443db3e92b4983b9738c1131f555cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SceneId:
+    m_Value: 0
+  m_AssetId:
+    i0: 133
+    i1: 252
+    i2: 153
+    i3: 10
+    i4: 132
+    i5: 186
+    i6: 102
+    i7: 100
+    i8: 75
+    i9: 85
+    i10: 39
+    i11: 174
+    i12: 240
+    i13: 151
+    i14: 106
+    i15: 46
+  m_ServerOnly: 0
+  m_LocalPlayerAuthority: 1
 --- !u!212 &212492334613579640
 SpriteRenderer:
   m_ObjectHideFlags: 1

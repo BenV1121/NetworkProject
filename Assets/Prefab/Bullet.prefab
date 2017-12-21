@@ -24,7 +24,7 @@ GameObject:
   - component: {fileID: 114794129645107592}
   - component: {fileID: 50212581115440442}
   - component: {fileID: 58233318342120566}
-  - component: {fileID: 114755437981871776}
+  - component: {fileID: 114203950848088030}
   m_Layer: 0
   m_Name: Bullet
   m_TagString: Bullet
@@ -80,6 +80,27 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.1
+--- !u!114 &114203950848088030
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1043511558521530}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -1768714887, guid: dc443db3e92b4983b9738c1131f555cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_TransformSyncMode: 2
+  m_SendInterval: 0.1
+  m_SyncRotationAxis: 3
+  m_RotationSyncCompression: 0
+  m_SyncSpin: 0
+  m_MovementTheshold: 0.001
+  m_VelocityThreshold: 0.0001
+  m_SnapThreshold: 5
+  m_InterpolateRotation: 1
+  m_InterpolateMovement: 1
 --- !u!114 &114626223496232754
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -111,28 +132,7 @@ MonoBehaviour:
     i14: 174
     i15: 117
   m_ServerOnly: 0
-  m_LocalPlayerAuthority: 1
---- !u!114 &114755437981871776
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1043511558521530}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: -1768714887, guid: dc443db3e92b4983b9738c1131f555cb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_TransformSyncMode: 2
-  m_SendInterval: 0.1
-  m_SyncRotationAxis: 3
-  m_RotationSyncCompression: 0
-  m_SyncSpin: 0
-  m_MovementTheshold: 0.001
-  m_VelocityThreshold: 0.0001
-  m_SnapThreshold: 5
-  m_InterpolateRotation: 1
-  m_InterpolateMovement: 1
+  m_LocalPlayerAuthority: 0
 --- !u!114 &114794129645107592
 MonoBehaviour:
   m_ObjectHideFlags: 1

@@ -50,6 +50,8 @@ public class PlayerController : NetworkBehaviour
     public bool isMF;
     public bool isSF;
 
+    public float mfLimit = 400;
+
     // Use this for initialization
     void Start ()
     {
@@ -178,6 +180,8 @@ public class PlayerController : NetworkBehaviour
             {
                 if (hasAuthority)
                     mf.CmdFire(bulletDirectionVector);
+
+                mfLimit -= 1;
             }
         }
         else if (isSF == true)
@@ -189,7 +193,11 @@ public class PlayerController : NetworkBehaviour
             }
         }
 
-
+        if(mfLimit <= 0)
+        {
+            isMF = false;
+            isDF = true;
+        }
     }
     void OnCollisionEnter2D(Collision2D other)
     {

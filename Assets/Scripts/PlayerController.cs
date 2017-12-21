@@ -7,8 +7,12 @@ using UnityEngine.EventSystems;
 
 public class PlayerController : NetworkBehaviour
 {
+    [SyncVar]
     public float speed;
     float force;
+
+    [SyncVar]
+    public float speedBoostTimer;
 
     //Default values, used for when a power-up wears off.
     float baseSpeed;
@@ -17,7 +21,9 @@ public class PlayerController : NetworkBehaviour
     //How powerful the jump is.
     public float jumpForce = 300;
 
+    [SyncVar]
     public float maxHealth = 10;
+    [SyncVar]
     float _health;
 
     private Rigidbody2D rgb2;
@@ -66,6 +72,8 @@ public class PlayerController : NetworkBehaviour
         isDF = true;
         isMF = false;
         isSF = false;
+
+        speedBoostTimer = 0;
     }
 
     // Get the direction to fire the bullet in
@@ -98,7 +106,7 @@ public class PlayerController : NetworkBehaviour
 
     void LocalUpdate()
     {
-
+       
     }
 
     [Command]
@@ -108,6 +116,28 @@ public class PlayerController : NetworkBehaviour
         //projectileInstance.SetOwner(this);
         projectileInstance.direction = dir;
         NetworkServer.Spawn(projectileInstance.gameObject);
+    }
+
+    public void StartSpeedBoost(float time, float newSpeed)
+    {
+        if(speedBoostTimer <= 0)
+        {
+            speedBoostTimer = time;
+            StartCoroutine(SpeedBoost(newSpeed));
+        }
+        else
+            speedBoostTimer = time;
+    }
+
+    IEnumerator SpeedBoost(float newSpeed)
+    {
+        speed = newSpeed;
+        while (speedBoostTimer > 0)
+        {
+            speedBoostTimer -= Time.deltaTime;
+            yield return null;
+        }
+        speed = baseSpeed;
     }
 
     // Update is called once per frame
@@ -163,6 +193,8 @@ public class PlayerController : NetworkBehaviour
     }
     void OnCollisionEnter2D(Collision2D other)
     {
+        if (other.gameObject.tag == "Player")
+            Physics2D.IgnoreCollision(GetComponent<Collider2D>(), other.gameObject.GetComponent<Collider2D>());
         //if()
         groundCheck = true;
     }
@@ -183,6 +215,6 @@ public class PlayerController : NetworkBehaviour
 
     //Only let the server modify health
     [Server]
-    public void setHealth(float h) { _health = h; }
+    public void setHealth(float h) { _health = h; Debug.Log(gameObject.name + " health: " + health); }
 
 }

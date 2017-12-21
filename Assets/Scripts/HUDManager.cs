@@ -10,6 +10,8 @@ public class HUDManager : NetworkBehaviour {
 
     //Reference to the health bar so we can update it.
     public Image healthBar;
+    public Text speedCooldown;
+    public GameObject speedTimer;
 
     //An icon that shows what gun you have.
     //public GameObject gunIcon;
@@ -43,6 +45,7 @@ public class HUDManager : NetworkBehaviour {
 	// Update is called once per frame
 	void Update () {
         UpdateHealth();
+        UpdateSpeed();
 	}
 
     void SetUpDelegates()
@@ -58,4 +61,11 @@ public class HUDManager : NetworkBehaviour {
     {
         healthBar.fillAmount = player.health / player.maxHealth;
     }
+
+    void UpdateSpeed()
+    {
+        speedTimer.SetActive(player.speedBoostTimer > 0);
+        speedCooldown.text = (Mathf.Ceil(player.speedBoostTimer)).ToString();
+    }
+   
 }

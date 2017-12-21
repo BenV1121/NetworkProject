@@ -1,16 +1,18 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Networking;
 
-public class ItemDrop : MonoBehaviour
+public class ItemDrop : NetworkBehaviour
 {
     public float health = 1;
     public bool isDead;
+    int spawnIdx;
 
     public GameObject deathEffect;
     public GameObject hitEffect;
 
-    public GameObject powerUps;
+    public List<GameObject> powerUps;
 
     // Use this for initialization
     void Start()
@@ -23,7 +25,7 @@ public class ItemDrop : MonoBehaviour
     {
         if (isDead == true)
         {
-            Death();
+            CmdDeath();
         }
     }
 
@@ -32,11 +34,11 @@ public class ItemDrop : MonoBehaviour
     {
         if (collider.gameObject.tag == "Bullet")
         {
-            Destroy(collider.gameObject);
+             NetworkServer.Destroy(collider.gameObject);
 
             health -= 1;
 
-            Destroy(Instantiate(hitEffect, collider.transform.position, gameObject.transform.rotation) as GameObject, 2);
+            NetworkServer.Destroy(Instantiate(hitEffect, collider.transform.position, gameObject.transform.rotation));
 
             if (health <= 0)
             {
@@ -45,11 +47,14 @@ public class ItemDrop : MonoBehaviour
         }
     }
 
-    void Death()
+    [Command]
+    void CmdDeath()
     {
         Destroy(gameObject);
 
-        Destroy(Instantiate(deathEffect, gameObject.transform.position, gameObject.transform.rotation) as GameObject, 2);
-        Instantiate(powerUps, gameObject.transform.position, gameObject.transform.rotation);
+        spawnIdx = Random.Range(0, powerUps.Count);
+        NetworkServer.Spawn(Instantiate(deathEffect, gameObject.transform.position, gameObject.transform.rotation));
+        NetworkServer.Spawn(Instantiate(powerUps[spawnIdx], gameObject.transform.position, gameObject.transform.rotation));
+
     }
 }

@@ -6,17 +6,18 @@ using UnityEngine.Networking;
 public class PickupSpeed : Pickup
 {
 
-    public float speedAmount;
+    public float speedAmount = 0.3f;
+    public float duration = 5;
 
     //Have the server modify the player variables
     [Command]
     public override void CmdPickupEffect()
     {
-        
+        pc.StartSpeedBoost(duration, speedAmount);
 
     }
 
-    void OnTriggerEnter2D(Collider2D other)
+    void OnCollisionEnter2D(Collision2D other)
     {
         if (other.gameObject.tag == ("Player"))
         {

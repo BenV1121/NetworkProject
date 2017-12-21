@@ -13,42 +13,37 @@ public class EnemyScript : NetworkBehaviour
     public GameObject hitEffect;
 
     // Use this for initialization
-    void Start ()
+    void Start()
     {
         isDead = false;
-	}
-	
-	// Update is called once per frame
-	void Update ()
+    }
+
+    // Update is called once per frame
+    void Update()
     {
-		if(isDead == true)
+        if (health <= 0)
+        {
+            isDead = true;
+        }
+
+        if (isDead == true)
         {
             Death();
         }
-	}
+    }
 
 
     void OnTriggerEnter2D(Collider2D collider)
     {
         if (collider.gameObject.tag == "Bullet")
         {
-            //Destroy(collider.gameObject);
-
             health -= 1;
-
-            Destroy(Instantiate(hitEffect, collider.transform.position, gameObject.transform.rotation) as GameObject, 2);
-
-            if (health <= 0)
-            {
-                isDead = true;
-            }
         }
     }
 
     void Death()
     {
         Destroy(gameObject);
-
-        Destroy(Instantiate(deathEffect, gameObject.transform.position, gameObject.transform.rotation) as GameObject, 2);
+        Instantiate(deathEffect, gameObject.transform.position, gameObject.transform.rotation);
     }
 }

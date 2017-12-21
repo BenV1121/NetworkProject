@@ -108,6 +108,43 @@ NavMeshSettings:
     tileSize: 256
     accuratePlacement: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &33997691 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1304932673170094, guid: 85fc990a84ba66644b5527aef0976a2e,
+    type: 2}
+  m_PrefabInternal: {fileID: 126852801}
+--- !u!114 &33997692
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 33997691}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 372142912, guid: dc443db3e92b4983b9738c1131f555cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SceneId:
+    m_Value: 0
+  m_AssetId:
+    i0: 133
+    i1: 252
+    i2: 153
+    i3: 10
+    i4: 132
+    i5: 186
+    i6: 102
+    i7: 100
+    i8: 75
+    i9: 85
+    i10: 39
+    i11: 174
+    i12: 240
+    i13: 151
+    i14: 106
+    i15: 46
+  m_ServerOnly: 0
+  m_LocalPlayerAuthority: 1
 --- !u!1001 &126852801
 Prefab:
   m_ObjectHideFlags: 0
@@ -494,6 +531,60 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1013659478 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1304932673170094, guid: 85fc990a84ba66644b5527aef0976a2e,
+    type: 2}
+  m_PrefabInternal: {fileID: 320452412}
+--- !u!114 &1013659479
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1013659478}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 372142912, guid: dc443db3e92b4983b9738c1131f555cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SceneId:
+    m_Value: 0
+  m_AssetId:
+    i0: 133
+    i1: 252
+    i2: 153
+    i3: 10
+    i4: 132
+    i5: 186
+    i6: 102
+    i7: 100
+    i8: 75
+    i9: 85
+    i10: 39
+    i11: 174
+    i12: 240
+    i13: 151
+    i14: 106
+    i15: 46
+  m_ServerOnly: 0
+  m_LocalPlayerAuthority: 1
+--- !u!148 &1013659480
+NetworkView:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1013659478}
+  m_Enabled: 1
+  m_StateSynchronization: 1
+  m_Observed: {fileID: 1013659483}
+  m_ViewID:
+    m_ID: 1
+    m_Type: 1
+--- !u!4 &1013659483 stripped
+Transform:
+  m_PrefabParentObject: {fileID: 4386716565097390, guid: 85fc990a84ba66644b5527aef0976a2e,
+    type: 2}
+  m_PrefabInternal: {fileID: 320452412}
 --- !u!1 &1803226504
 GameObject:
   m_ObjectHideFlags: 0

@@ -28,11 +28,8 @@ public class ProjectileScript : NetworkBehaviour
     {
         rb2.transform.Translate(direction * speed * Time.deltaTime, Space.World);
     }
-
     private void OnBecameInvisible()
     {
-       // if (gameObject != PlayerManager.localPlayer)
-            //if (PlayerManager.localPlayer.isServer)
-                //Destroy(gameObject);
+        NetworkServer.Destroy(gameObject);
     }
 }

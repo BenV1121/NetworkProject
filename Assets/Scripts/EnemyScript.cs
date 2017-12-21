@@ -32,7 +32,7 @@ public class EnemyScript : NetworkBehaviour
     {
         if (collider.gameObject.tag == "Bullet")
         {
-            //Destroy(collider.gameObject);
+            NetworkServer.Destroy(collider.gameObject);
 
             health -= 1;
 
@@ -47,8 +47,12 @@ public class EnemyScript : NetworkBehaviour
 
     void Death()
     {
-        Destroy(gameObject);
+        NetworkServer.Destroy(gameObject);
 
-        Destroy(Instantiate(deathEffect, gameObject.transform.position, gameObject.transform.rotation) as GameObject, 2);
+        
+
+        Instantiate(deathEffect, gameObject.transform.position, gameObject.transform.rotation);
     }
+
+
 }

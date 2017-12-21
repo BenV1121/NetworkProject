@@ -180,6 +180,6 @@ public class PlayerController : NetworkBehaviour
 
     //Only let the server modify health
     [Server]
-    public void setHealth(float h) { _health = h; }
+    public void setHealth(float h) { _health = h; Debug.Log(gameObject.name + " health: " + health); }
 
 }

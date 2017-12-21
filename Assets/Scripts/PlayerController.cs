@@ -118,16 +118,31 @@ public class PlayerController : NetworkBehaviour
         NetworkServer.Spawn(projectileInstance.gameObject);
     }
 
+    public void StartSpeedBoost(float time, float newSpeed)
+    {
+        if(speedBoostTimer <= 0)
+        {
+            speedBoostTimer = time;
+            StartCoroutine(SpeedBoost(newSpeed));
+        }
+        else
+            speedBoostTimer = time;
+    }
+
+    IEnumerator SpeedBoost(float newSpeed)
+    {
+        speed = newSpeed;
+        while (speedBoostTimer > 0)
+        {
+            speedBoostTimer -= Time.deltaTime;
+            yield return null;
+        }
+        speed = baseSpeed;
+    }
+
     // Update is called once per frame
     private void Update ()
     {
-        if (speedBoostTimer > 0)
-        {
-            speedBoostTimer -= Time.deltaTime;
-            if (speedBoostTimer <= 0)
-                speed = baseSpeed;
-        }
-
         if (hasAuthority)
         { 
             float move = Input.GetAxis("Horizontal");

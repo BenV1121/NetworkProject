@@ -13,8 +13,7 @@ public class PickupSpeed : Pickup
     [Command]
     public override void CmdPickupEffect()
     {
-        pc.speedBoostTimer = duration;
-        pc.speed = speedAmount;
+        pc.StartSpeedBoost(duration, speedAmount);
 
     }
 

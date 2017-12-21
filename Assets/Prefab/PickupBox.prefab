@@ -38,7 +38,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1486410317778404}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 7.48, y: -3.6, z: 0}
+  m_LocalPosition: {x: 6.05, y: -3.3958015, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -75,9 +75,20 @@ BoxCollider2D:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_UsedByEffector: 0
+  m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1, y: 1}
+    newSize: {x: 1, y: 1}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
+  m_EdgeRadius: 0
 --- !u!114 &114721423190513502
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -92,22 +103,22 @@ MonoBehaviour:
   m_SceneId:
     m_Value: 0
   m_AssetId:
-    i0: 0
-    i1: 0
-    i2: 0
-    i3: 0
-    i4: 0
-    i5: 0
-    i6: 0
-    i7: 0
-    i8: 0
-    i9: 0
-    i10: 0
-    i11: 0
-    i12: 0
-    i13: 0
-    i14: 0
-    i15: 0
+    i0: 7
+    i1: 249
+    i2: 135
+    i3: 234
+    i4: 62
+    i5: 235
+    i6: 213
+    i7: 52
+    i8: 91
+    i9: 66
+    i10: 255
+    i11: 117
+    i12: 10
+    i13: 199
+    i14: 200
+    i15: 112
   m_ServerOnly: 0
   m_LocalPlayerAuthority: 0
 --- !u!114 &114723005818139830
@@ -126,7 +137,9 @@ MonoBehaviour:
   deathEffect: {fileID: 1391747246615710, guid: 9724ec0e3447c7d488d71550e2b9a211,
     type: 2}
   hitEffect: {fileID: 1163733057714060, guid: 0cb46a9d311a91748b5988170404eec6, type: 2}
-  powerUps: {fileID: 1776702259557434, guid: 514c135fe99edfb4cb3384ddb21c32be, type: 2}
+  powerUps:
+  - {fileID: 1055323241471984, guid: 22dbf3a8490f0554c928f8e517f1fa1f, type: 2}
+  - {fileID: 1649539127438208, guid: 4f46063c1545a27448a281ed020f0bb8, type: 2}
 --- !u!212 &212770346875670490
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -157,8 +170,15 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
+  m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: c4d5d00b835519647ba6675730d3462d, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
+  m_DrawMode: 0
+  m_Size: {x: 1, y: 1}
+  m_AdaptiveModeThreshold: 0.5
+  m_SpriteTileMode: 0
+  m_WasSpriteAssigned: 1
+  m_MaskInteraction: 0

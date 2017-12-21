@@ -168,6 +168,13 @@ MonoBehaviour:
   m_OnlineScene: Level 1 - henry
   m_SpawnPrefabs:
   - {fileID: 1043511558521530, guid: 7581ff74fbd65d34b867445c8dafae75, type: 2}
+  - {fileID: 1907462161895352, guid: 0f579383d1b8483498aef8c142c27519, type: 2}
+  - {fileID: 1055323241471984, guid: 22dbf3a8490f0554c928f8e517f1fa1f, type: 2}
+  - {fileID: 1649539127438208, guid: 4f46063c1545a27448a281ed020f0bb8, type: 2}
+  - {fileID: 1391747246615710, guid: 9724ec0e3447c7d488d71550e2b9a211, type: 2}
+  - {fileID: 1749791422267346, guid: 6396b4a7e3f1b39408cd287b5e6b8b97, type: 2}
+  - {fileID: 1163733057714060, guid: 0cb46a9d311a91748b5988170404eec6, type: 2}
+  - {fileID: 1105476029987272, guid: 88e16e706799b70479309f0b0a92db55, type: 2}
   m_CustomConfig: 1
   m_MaxConnections: 4
   m_ConnectionConfig:

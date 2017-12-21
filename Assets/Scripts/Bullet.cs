@@ -1,20 +1,26 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Networking;
 
-public class Bullet : MonoBehaviour
+public class Bullet : NetworkBehaviour
 {
-
+    public Vector3 dir;
     private Transform target;
 
     public float speed = 70f;
     public GameObject impactEffect;
-
+public void Awake()
+    {
+        //Vector3 dir = target.position - transform.position;
+      
+    }
     public void Seek(Transform _target)
     {
         target = _target;
+         dir = target.position - transform.position;
     }
-
+    
     // Update is called once per frame
     void Update()
     {
@@ -25,24 +31,34 @@ public class Bullet : MonoBehaviour
             return;
         }
 
-        Vector3 dir = target.position - transform.position;
+        //Vector3 dir = target.position - transform.position;
         float distanceThisFrame = speed * Time.deltaTime;
 
         if (dir.magnitude <= distanceThisFrame)
         {
-            HitTarget();
+            
             return;
         }
 
         transform.Translate(dir.normalized * distanceThisFrame, Space.World);
 
     }
-    void HitTarget()
+   
+    void OnCollisionEnter2D(Collision2D other)
     {
-        GameObject effectIns = (GameObject)Instantiate(impactEffect, transform.position, transform.rotation);
-        Destroy(effectIns, 2f);
 
-        Destroy(target.gameObject);
-        Destroy(gameObject);
+
+        if (!isServer) { Destroy(gameObject); }
+
+        else
+        {
+            GameObject effectIns = (GameObject)Instantiate(impactEffect, transform.position, transform.rotation);
+            NetworkServer.Spawn(effectIns);
+
+
+            NetworkServer.Destroy(target.gameObject);
+            NetworkServer.Destroy(gameObject);
+        }
     }
+  
 }

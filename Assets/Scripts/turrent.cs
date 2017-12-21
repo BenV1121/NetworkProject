@@ -1,8 +1,9 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Networking;
 
-public class turrent : MonoBehaviour {
+public class turrent : NetworkBehaviour {
     private Transform target;
 
     [Header("Attributes")]
@@ -67,17 +68,18 @@ public class turrent : MonoBehaviour {
 
         if (fireCountdown <= 0f)
         {
-            Shoot();
+            CmdShoot();
             fireCountdown = 1f / fireRate;
         }
 
-        fireCountdown -= Time.deltaTime;
+            fireCountdown -= Time.deltaTime;
 
     }
-
-    void Shoot()
+ 
+    void CmdShoot()
     {
-        GameObject bulletGO = (GameObject)Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
+        GameObject bulletGO = (Instantiate(bulletPrefab, firePoint.position, firePoint.rotation));
+        NetworkServer.Spawn(bulletGO);
         Bullet bullet = bulletGO.GetComponent<Bullet>();
 
         if (bullet != null)

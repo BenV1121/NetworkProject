@@ -3,20 +3,20 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Networking;
 
-public abstract class Pickup : NetworkBehaviour {
+public class PickupSpeed : Pickup
+{
 
-    protected PlayerController pc;
+    public float speedAmount;
 
+    //Have the server modify the player variables
     [Command]
-    public abstract void CmdPickupEffect();
-
-    [Server]
-    protected void Die()
+    public override void CmdPickupEffect()
     {
-        NetworkServer.Destroy(gameObject);
+        
+
     }
 
-    void OnCollisionEnter2D(Collider2D other)
+    void OnTriggerEnter2D(Collider2D other)
     {
         if (other.gameObject.tag == ("Player"))
         {

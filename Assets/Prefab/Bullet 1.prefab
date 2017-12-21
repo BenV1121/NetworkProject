@@ -21,6 +21,8 @@ GameObject:
   - component: {fileID: 4310764036266844}
   - component: {fileID: 212004786315084558}
   - component: {fileID: 114569340965592968}
+  - component: {fileID: 114098739820957032}
+  - component: {fileID: 114010068702955014}
   m_Layer: 0
   m_Name: Bullet 1
   m_TagString: Untagged
@@ -34,13 +36,65 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1907462161895352}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0.14011207, y: 0, z: 0, w: -0.99013567}
   m_LocalPosition: {x: 0, y: -2.97, z: 0}
   m_LocalScale: {x: 5, y: 5, z: 5}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &114010068702955014
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1907462161895352}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -1768714887, guid: dc443db3e92b4983b9738c1131f555cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_TransformSyncMode: 1
+  m_SendInterval: 0.14285715
+  m_SyncRotationAxis: 7
+  m_RotationSyncCompression: 0
+  m_SyncSpin: 0
+  m_MovementTheshold: 0.001
+  m_SnapThreshold: 5
+  m_InterpolateRotation: 1
+  m_InterpolateMovement: 1
+--- !u!114 &114098739820957032
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1907462161895352}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 372142912, guid: dc443db3e92b4983b9738c1131f555cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SceneId:
+    m_Value: 0
+  m_AssetId:
+    i0: 15
+    i1: 87
+    i2: 147
+    i3: 131
+    i4: 209
+    i5: 184
+    i6: 72
+    i7: 52
+    i8: 152
+    i9: 174
+    i10: 248
+    i11: 193
+    i12: 66
+    i13: 194
+    i14: 117
+    i15: 25
+  m_ServerOnly: 0
+  m_LocalPlayerAuthority: 0
 --- !u!114 &114569340965592968
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -52,8 +106,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e71be37a8d938b344b876e1c9883a9f4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 70
-  impactEffect: {fileID: 0}
+  speed: 50
+  impactEffect: {fileID: 1163733057714060, guid: 0cb46a9d311a91748b5988170404eec6,
+    type: 2}
+  damage: 1
 --- !u!212 &212004786315084558
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -84,15 +140,8 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
-  m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
   m_Color: {r: 1, g: 0, b: 0, a: 1}
   m_FlipX: 0
   m_FlipY: 0
-  m_DrawMode: 0
-  m_Size: {x: 1, y: 1}
-  m_AdaptiveModeThreshold: 0.5
-  m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
-  m_MaskInteraction: 0

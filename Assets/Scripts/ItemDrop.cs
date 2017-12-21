@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+//using UnityEngine.Networking;
 
 public class ItemDrop : MonoBehaviour
 {
@@ -32,11 +33,12 @@ public class ItemDrop : MonoBehaviour
     {
         if (collider.gameObject.tag == "Bullet")
         {
-            Destroy(collider.gameObject);
+            Network.Destroy(collider.gameObject);
 
             health -= 1;
 
-            Destroy(Instantiate(hitEffect, collider.transform.position, gameObject.transform.rotation) as GameObject, 2);
+            //NetworkServer.
+            Destroy(Network.Instantiate(hitEffect, collider.transform.position, gameObject.transform.rotation, 0) as GameObject, 2);
 
             if (health <= 0)
             {
@@ -49,7 +51,8 @@ public class ItemDrop : MonoBehaviour
     {
         Destroy(gameObject);
 
-        Destroy(Instantiate(deathEffect, gameObject.transform.position, gameObject.transform.rotation) as GameObject, 2);
-        Instantiate(powerUps, gameObject.transform.position, gameObject.transform.rotation);
+        //NetworkServer.
+        Destroy(Network.Instantiate(deathEffect, gameObject.transform.position, gameObject.transform.rotation, 0) as GameObject, 2);
+        Network.Instantiate(powerUps, gameObject.transform.position, gameObject.transform.rotation, 0);
     }
 }

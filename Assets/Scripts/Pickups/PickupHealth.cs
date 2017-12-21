@@ -15,7 +15,6 @@ public class PickupHealth : Pickup {
             pc.setHealth(pc.health + healthAmount);
         else
             pc.setHealth(pc.maxHealth);
-
     }
 
     void OnCollisionEnter2D(Collision2D other)

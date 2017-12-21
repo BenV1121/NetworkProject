@@ -7,8 +7,12 @@ using UnityEngine.EventSystems;
 
 public class PlayerController : NetworkBehaviour
 {
+    [SyncVar]
     public float speed;
     float force;
+
+    [SyncVar]
+    public float speedBoostTimer;
 
     //Default values, used for when a power-up wears off.
     float baseSpeed;
@@ -17,7 +21,9 @@ public class PlayerController : NetworkBehaviour
     //How powerful the jump is.
     public float jumpForce = 300;
 
+    [SyncVar]
     public float maxHealth = 10;
+    [SyncVar]
     float _health;
 
     private Rigidbody2D rgb2;
@@ -66,6 +72,8 @@ public class PlayerController : NetworkBehaviour
         isDF = true;
         isMF = false;
         isSF = false;
+
+        speedBoostTimer = 0;
     }
 
     // Get the direction to fire the bullet in
@@ -98,7 +106,7 @@ public class PlayerController : NetworkBehaviour
 
     void LocalUpdate()
     {
-
+       
     }
 
     [Command]
@@ -113,6 +121,13 @@ public class PlayerController : NetworkBehaviour
     // Update is called once per frame
     private void Update ()
     {
+        if (speedBoostTimer > 0)
+        {
+            speedBoostTimer -= Time.deltaTime;
+            if (speedBoostTimer <= 0)
+                speed = baseSpeed;
+        }
+
         if (hasAuthority)
         { 
             float move = Input.GetAxis("Horizontal");
@@ -160,6 +175,8 @@ public class PlayerController : NetworkBehaviour
     }
     void OnCollisionEnter2D(Collision2D other)
     {
+        if (other.gameObject.tag == "Player")
+            Physics2D.IgnoreCollision(GetComponent<Collider2D>(), other.gameObject.GetComponent<Collider2D>());
         //if()
         groundCheck = true;
     }

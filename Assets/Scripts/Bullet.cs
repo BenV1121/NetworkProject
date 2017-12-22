@@ -27,7 +27,7 @@ public void Awake()
 
         if (target == null)
         {
-            Destroy(gameObject);
+            NetworkServer.Destroy(gameObject);
             return;
         }
 
@@ -44,15 +44,30 @@ public void Awake()
 
     }
    
-    void OnCollisionEnter2D(Collision2D other)
+    //void OnCollisionEnter2D(Collision2D other)
+    //{
+
+
+    //    if (!isServer) { Destroy(gameObject); }
+
+    //    else
+    //    {
+    //        GameObject effectIns = (GameObject)Instantiate(impactEffect, transform.position, transform.rotation);
+    //        NetworkServer.Spawn(effectIns);
+
+
+    //        //NetworkServer.Destroy(target.gameObject);
+    //        NetworkServer.Destroy(gameObject);
+    //    }
+    //}
+
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-
-
         if (!isServer) { Destroy(gameObject); }
 
         else
         {
-            GameObject effectIns = (GameObject)Instantiate(impactEffect, transform.position, transform.rotation);
+            GameObject effectIns = Instantiate(impactEffect, transform.position, transform.rotation);
             NetworkServer.Spawn(effectIns);
 
 
@@ -60,5 +75,16 @@ public void Awake()
             //NetworkServer.Destroy(gameObject);
         }
     }
-  
+
+    private void OnBecameInvisible()
+    {
+        StartCoroutine(DestroyAfterTime(1));
+    }
+
+    IEnumerator DestroyAfterTime(float time)
+    {
+        yield return new WaitForSeconds(time);
+        NetworkServer.Destroy(gameObject);
+    }
+
 }

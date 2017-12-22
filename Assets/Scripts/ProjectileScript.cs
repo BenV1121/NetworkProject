@@ -41,15 +41,15 @@ public class ProjectileScript : NetworkBehaviour
     {
         if (collider.gameObject.tag == "Enemy")
         {
-            StartCoroutine(DestroyAfterTime(2));
+            StartCoroutine(DestroyAfterTime(1));
 
-            Destroy(Instantiate(hitEffect, transform.position, gameObject.transform.rotation) as GameObject, 2);
+            NetworkServer.Spawn(Instantiate(hitEffect, transform.position, gameObject.transform.rotation));
         }
     }
 
     IEnumerator DestroyAfterTime(float time)
     {
         yield return new WaitForSeconds(time);
-        Destroy(gameObject);
+        NetworkServer.Destroy(gameObject);
     }
 }

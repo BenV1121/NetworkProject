@@ -204,9 +204,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 0.1
+  deathEffect: {fileID: 1749791422267346, guid: 6396b4a7e3f1b39408cd287b5e6b8b97,
+    type: 2}
   speedBoostTimer: 0
-  jumpForce: 300
+  jumpForce: 600
   maxHealth: 10
+  _health: 0
   groundCheck: 1
   projectile: {fileID: 114794129645107592, guid: 7581ff74fbd65d34b867445c8dafae75,
     type: 2}

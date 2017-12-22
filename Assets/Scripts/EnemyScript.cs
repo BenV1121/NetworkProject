@@ -38,6 +38,7 @@ public class EnemyScript : NetworkBehaviour
         if (collider.gameObject.tag == "Bullet")
         {
             health -= 1;
+            NetworkServer.Spawn(Instantiate(hitEffect, gameObject.transform.position, gameObject.transform.rotation));
         }
     }
 

@@ -11,6 +11,8 @@ public class PlayerController : NetworkBehaviour
     public float speed;
     float force;
 
+    public GameObject deathEffect;
+
     [SyncVar]
     public float speedBoostTimer;
 
@@ -24,7 +26,7 @@ public class PlayerController : NetworkBehaviour
     [SyncVar]
     public float maxHealth = 10;
     [SyncVar]
-    float _health;
+    public float _health;
 
     private Rigidbody2D rgb2;
 
@@ -64,7 +66,7 @@ public class PlayerController : NetworkBehaviour
         //projectilePrefab = (GameObject)Resources.Load("Bullet");
 
         //initialize defaults
-        _health = 1;
+        _health = maxHealth;
         baseSpeed = speed;
         baseJump = jumpForce;
 
@@ -152,6 +154,11 @@ public class PlayerController : NetworkBehaviour
         if (!isLocalPlayer)
             return;
 
+        if(health <= 0)
+        {
+            CmdDie();
+        }
+
         if (hasAuthority)
         { 
             float move = Input.GetAxis("Horizontal");
@@ -162,7 +169,7 @@ public class PlayerController : NetworkBehaviour
         if (Input.GetKeyDown("space") && groundCheck)
         {
             if(hasAuthority)
-            rgb2.AddForce(Vector2.up * 300);
+            rgb2.AddForce(Vector2.up * jumpForce);
         }
 
         if(Input.GetAxis("Horizontal") < 0)
@@ -228,5 +235,16 @@ public class PlayerController : NetworkBehaviour
     //Only let the server modify health
     [Server]
     public void setHealth(float h) { _health = h; Debug.Log(gameObject.name + " health: " + health); }
+
+    [Command]
+    private void CmdDie()
+    {
+        
+        if(!isServer)
+            Network.Disconnect(200);
+
+        NetworkServer.Spawn(Instantiate(deathEffect, transform.position, transform.rotation));
+        NetworkServer.Destroy(gameObject);
+    }
 
 }

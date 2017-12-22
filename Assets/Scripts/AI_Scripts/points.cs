@@ -2,9 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Follow : MonoBehaviour {
+public class points : MonoBehaviour {
+
     public float speed;
-    public enum moveType {transforPoint,PhysicsPoint};
+    public enum moveType { transforPoint, PhysicsPoint };
     public moveType moveTypes;
     public Transform[] pathpoints;
 
@@ -12,13 +13,15 @@ public class Follow : MonoBehaviour {
 
     public int curentPath = 0;
     public float reachPoint = 5f;
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void FixedUpdate () {
+    // Use this for initialization
+    void Start()
+    {
+
+    }
+
+    // Update is called once per frame
+    void FixedUpdate()
+    {
         switch (moveTypes)
         {
 
@@ -30,8 +33,8 @@ public class Follow : MonoBehaviour {
                 break;
 
         }
-		
-	}
+
+    }
 
     void transformPoint()
     {
@@ -41,12 +44,12 @@ public class Follow : MonoBehaviour {
 
         transform.Translate(dirnor * (speed * Time.fixedDeltaTime));
 
-        if (dir.magnitude <= reachPoint )
+        if (dir.magnitude <= reachPoint)
         {
             curentPath++;
 
             if (curentPath >= pathpoints.Length) { curentPath = 0; }
-                
+
         }
 
 
@@ -67,7 +70,7 @@ public class Follow : MonoBehaviour {
 
         foreach (Transform pathpoint in pathpoints)
         {
-            if (pathpoint) { Gizmos.DrawSphere(pathpoint.position,reachPoint); }
+            if (pathpoint) { Gizmos.DrawSphere(pathpoint.position, reachPoint); }
         }
     }
 }

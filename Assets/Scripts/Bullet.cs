@@ -56,8 +56,8 @@ public void Awake()
             NetworkServer.Spawn(effectIns);
 
 
-            NetworkServer.Destroy(target.gameObject);
-            NetworkServer.Destroy(gameObject);
+            //NetworkServer.Destroy(target.gameObject);
+            //NetworkServer.Destroy(gameObject);
         }
     }
   

@@ -34,7 +34,7 @@ public class ItemDrop : NetworkBehaviour
     {
         if (collider.gameObject.tag == "Bullet")
         {
-             NetworkServer.Destroy(collider.gameObject);
+            NetworkServer.Destroy(collider.gameObject);
 
             health -= 1;
 

@@ -214,6 +214,7 @@ MonoBehaviour:
   isDF: 1
   isMF: 0
   isSF: 0
+  mfLimit: 300
 --- !u!212 &212149555792989502
 SpriteRenderer:
   m_ObjectHideFlags: 1

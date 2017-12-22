@@ -66,26 +66,36 @@ public void Awake()
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (!isServer) { Destroy(gameObject); }
-
-        else
+        if(collision.gameObject.tag == "Bullet" ||
+            collision.gameObject.tag == "Player" ||
+            collision.gameObject.tag == "Floor")
         {
+            StartCoroutine(DestroyAfterTime(.1f));
             GameObject effectIns = Instantiate(impactEffect, transform.position, transform.rotation);
             NetworkServer.Spawn(effectIns);
-
-
-            //NetworkServer.Destroy(target.gameObject);
-            //NetworkServer.Destroy(gameObject);
         }
+
+        //if (!isServer) { Destroy(gameObject); }
+
+        //else
+        //{
+        //    GameObject effectIns = Instantiate(impactEffect, transform.position, transform.rotation);
+        //    NetworkServer.Spawn(effectIns);
+
+
+        //    //NetworkServer.Destroy(target.gameObject);
+        //    //NetworkServer.Destroy(gameObject);
+        //}
     }
 
     private void OnBecameInvisible()
     {
-        StartCoroutine(DestroyAfterTime(1));
+        StartCoroutine(DestroyAfterTime(.5f));
     }
 
     IEnumerator DestroyAfterTime(float time)
     {
+        GetComponent<Collider2D>().enabled = false;
         yield return new WaitForSeconds(time);
         NetworkServer.Destroy(gameObject);
     }

@@ -11,7 +11,7 @@ public class AnoyingPlayer : NetworkBehaviour {
 
     // Use this for initialization
     void Start () {
-		
+        target = PlayerManager.players[(int)Random.Range(0, PlayerManager.players.Count)].gameObject;
 	}
 	
 	// Update is called once per frame

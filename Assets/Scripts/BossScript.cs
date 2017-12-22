@@ -86,6 +86,20 @@ public class BossScript : NetworkBehaviour
             hand2.anim.SetBool("rightIsDamaged", false);
         }
 
+        if (health == 50)
+        {
+            state = BossScript.bossState.invincible;
+
+            health -= 1;
+            hand1.health = 20;
+            hand2.health = 20;
+
+            hand1.state = BossHandScript.handState.desperation;
+            hand1.anim.SetBool("leftIsDamaged", false);
+            hand2.state = BossHandScript2.handState.vulnerable;
+            hand2.anim.SetBool("rightIsDamaged", false);
+        }
+
         if (hand1.health <= 0 && hand2.health <= 0)
         {
             state = bossState.damaged;

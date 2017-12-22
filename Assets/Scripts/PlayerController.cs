@@ -58,16 +58,18 @@ public class PlayerController : NetworkBehaviour
 
     void Awake()
     {
-        rotator = GameObject.FindObjectOfType<HeadRotation>();
+
+        rotator = GetComponentInChildren<HeadRotation>();
 
         if (rotator != null)
         {
-            gunHead = rotator.transform.Find("gunHead_0");
+            //gunHead = rotator.transform.Find("gunHead_0");
 
-            if(gunHead != null)
-            {
-                firePoint = gunHead.transform.Find("FirePoint");
-            }
+            //if(gunHead != null)
+            //{
+
+            //}
+            firePoint = rotator.transform.Find("FirePoint");
         }
     }
 
@@ -138,7 +140,8 @@ public class PlayerController : NetworkBehaviour
     [Command]
     private void CmdFire(Vector2 dir)
     {
-        ProjectileScript projectileInstance = Instantiate(projectile, firePoint.transform.position, Quaternion.identity) as ProjectileScript;
+        Debug.Log("recieving " + firePoint.position);
+        ProjectileScript projectileInstance = Instantiate(projectile, firePoint.position, Quaternion.identity) as ProjectileScript;
         //projectileInstance.SetOwner(this);
         projectileInstance.direction = dir;
         NetworkServer.Spawn(projectileInstance.gameObject);
@@ -194,7 +197,7 @@ public class PlayerController : NetworkBehaviour
         {
             if (Input.GetButtonDown("Fire1"))
             {
-                if(hasAuthority)
+                if (hasAuthority)
                     df.CmdFire(bulletDirectionVector);
             }
         }

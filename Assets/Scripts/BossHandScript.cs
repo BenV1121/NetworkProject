@@ -21,7 +21,7 @@ public class BossHandScript : NetworkBehaviour
 
     public Animator anim;
 
-    public enum handState { vulnerable, damaged }
+    public enum handState { vulnerable, damaged, desperation }
 
     public handState state;
 
@@ -55,6 +55,11 @@ public class BossHandScript : NetworkBehaviour
                 anim.SetBool("attackTimerOff", true);
                 attackTime = 0;
             }
+        }
+
+        if(state == handState.desperation)
+        {
+            anim.SetBool("desperate", true);
         }
 
         if(attackFinish == true)

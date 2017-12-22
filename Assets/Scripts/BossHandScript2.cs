@@ -19,10 +19,11 @@ public class BossHandScript2 : NetworkBehaviour
     int spawnIdx;
 
     public BossScript boss;
+    public BossHandScript bossH;
 
     public Animator anim;
 
-    public enum handState { vulnerable, damaged }
+    public enum handState { vulnerable, damaged, desperation }
 
     public handState state;
 
@@ -55,6 +56,11 @@ public class BossHandScript2 : NetworkBehaviour
                 anim.SetBool("attackTimerOff", true);
                 attackTime = 0;
             }
+        }
+
+        if (state == handState.desperation && bossH.state == BossHandScript.handState.desperation)
+        {
+
         }
 
         if (attackFinish == true)

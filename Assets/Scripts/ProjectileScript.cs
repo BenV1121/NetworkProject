@@ -15,10 +15,12 @@ public class ProjectileScript : NetworkBehaviour
     public Vector2 direction;
 
     public GameObject hitEffect;
+    public GameObject noDamageEffect;
 
     public static ProjectileScript localProjectileScript;
 
     EnemyScript enemy;
+    public BossScript boss;
 
     public void SetOwner(PlayerController p)
     { player = p; }
@@ -26,6 +28,7 @@ public class ProjectileScript : NetworkBehaviour
     private void Start()
     {
         rb2 = GetComponent<Rigidbody2D>();
+        boss = FindObjectOfType<BossScript>() as BossScript;
     }
 
     private void Update()
@@ -43,7 +46,22 @@ public class ProjectileScript : NetworkBehaviour
         {
             StartCoroutine(DestroyAfterTime(2));
 
-            Destroy(Instantiate(hitEffect, transform.position, gameObject.transform.rotation) as GameObject, 2);
+            NetworkServer.Spawn(Instantiate(hitEffect, gameObject.transform.position, gameObject.transform.rotation));
+        }
+
+        if (collider.gameObject.tag == "Boss")
+        {
+            StartCoroutine(DestroyAfterTime(2));
+            
+            if(boss.state == BossScript.bossState.damaged)
+            {
+                NetworkServer.Spawn(Instantiate(noDamageEffect, gameObject.transform.position, gameObject.transform.rotation));
+            }
+            else
+            {
+                StartCoroutine(DestroyAfterTime(2));
+                NetworkServer.Spawn(Instantiate(hitEffect, gameObject.transform.position, gameObject.transform.rotation));
+            }
         }
     }
 

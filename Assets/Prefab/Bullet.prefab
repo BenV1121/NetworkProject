@@ -146,8 +146,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 25
   damage: 1
+  delayTime: 0
   direction: {x: 0, y: 0}
   hitEffect: {fileID: 1163733057714060, guid: 0cb46a9d311a91748b5988170404eec6, type: 2}
+  noDamageEffect: {fileID: 1548806398717788, guid: e9ccef13803e3ff49a061d91eb24fb9f,
+    type: 2}
 --- !u!212 &212953602389543812
 SpriteRenderer:
   m_ObjectHideFlags: 1

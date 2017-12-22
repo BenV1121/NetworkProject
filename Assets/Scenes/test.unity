@@ -636,7 +636,10 @@ MonoBehaviour:
   deathEffect: {fileID: 1391747246615710, guid: 9724ec0e3447c7d488d71550e2b9a211,
     type: 2}
   hitEffect: {fileID: 1163733057714060, guid: 0cb46a9d311a91748b5988170404eec6, type: 2}
-  powerUps: {fileID: 1776702259557434, guid: 514c135fe99edfb4cb3384ddb21c32be, type: 2}
+  powerUps:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
 --- !u!61 &346798903
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -766,6 +769,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   healthBar: {fileID: 839907737}
+  speedCooldown: {fileID: 0}
+  speedTimer: {fileID: 0}
 --- !u!114 &458951635
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -976,7 +981,10 @@ MonoBehaviour:
   deathEffect: {fileID: 1391747246615710, guid: 9724ec0e3447c7d488d71550e2b9a211,
     type: 2}
   hitEffect: {fileID: 1163733057714060, guid: 0cb46a9d311a91748b5988170404eec6, type: 2}
-  powerUps: {fileID: 1776702259557434, guid: 514c135fe99edfb4cb3384ddb21c32be, type: 2}
+  powerUps:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
 --- !u!61 &641392321
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1173,7 +1181,10 @@ MonoBehaviour:
   deathEffect: {fileID: 1391747246615710, guid: 9724ec0e3447c7d488d71550e2b9a211,
     type: 2}
   hitEffect: {fileID: 1163733057714060, guid: 0cb46a9d311a91748b5988170404eec6, type: 2}
-  powerUps: {fileID: 1776702259557434, guid: 514c135fe99edfb4cb3384ddb21c32be, type: 2}
+  powerUps:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
 --- !u!61 &739627244
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1725,7 +1736,10 @@ MonoBehaviour:
   deathEffect: {fileID: 1391747246615710, guid: 9724ec0e3447c7d488d71550e2b9a211,
     type: 2}
   hitEffect: {fileID: 1163733057714060, guid: 0cb46a9d311a91748b5988170404eec6, type: 2}
-  powerUps: {fileID: 1776702259557434, guid: 514c135fe99edfb4cb3384ddb21c32be, type: 2}
+  powerUps:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
 --- !u!61 &1546267891
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -2172,7 +2186,10 @@ MonoBehaviour:
   deathEffect: {fileID: 1391747246615710, guid: 9724ec0e3447c7d488d71550e2b9a211,
     type: 2}
   hitEffect: {fileID: 1163733057714060, guid: 0cb46a9d311a91748b5988170404eec6, type: 2}
-  powerUps: {fileID: 1776702259557434, guid: 514c135fe99edfb4cb3384ddb21c32be, type: 2}
+  powerUps:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
 --- !u!114 &1803226510
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2543,13 +2560,12 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1903043862}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 77f541f509cc2304ebd15e7629f2c6b6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  targets:
-  - {fileID: 4635039313709036, guid: 659ff16c861ae76488349da41155559c, type: 2}
+  targets: []
   offset: {x: 0, y: 0, z: -10}
   smooth: 0.5
   velocity: {x: 0, y: 0, z: 0}
@@ -2777,7 +2793,10 @@ MonoBehaviour:
   deathEffect: {fileID: 1391747246615710, guid: 9724ec0e3447c7d488d71550e2b9a211,
     type: 2}
   hitEffect: {fileID: 1163733057714060, guid: 0cb46a9d311a91748b5988170404eec6, type: 2}
-  powerUps: {fileID: 1776702259557434, guid: 514c135fe99edfb4cb3384ddb21c32be, type: 2}
+  powerUps:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
 --- !u!61 &2100110392
 BoxCollider2D:
   m_ObjectHideFlags: 0

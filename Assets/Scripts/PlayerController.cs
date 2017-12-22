@@ -55,7 +55,11 @@ public class PlayerController : NetworkBehaviour
     // Use this for initialization
     void Start ()
     {
-        if (isLocalPlayer) { localPlayerController = this; }
+            multyPLayerCamera cam = (FindObjectsOfType(typeof(multyPLayerCamera)) as multyPLayerCamera[])[0];
+            cam.targets.Add(transform);
+        if (isLocalPlayer) {
+            localPlayerController = this;
+        }
         rgb2 = gameObject.GetComponent<Rigidbody2D>();
         //projectilePrefab = (GameObject)Resources.Load("Bullet");
 

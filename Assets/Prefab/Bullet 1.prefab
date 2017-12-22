@@ -124,7 +124,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dir: {x: 0, y: 0, z: 0}
-  speed: 50
+  speed: 100
   impactEffect: {fileID: 1163733057714060, guid: 0cb46a9d311a91748b5988170404eec6,
     type: 2}
 --- !u!212 &212004786315084558

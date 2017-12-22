@@ -308,7 +308,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 147422576}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 77f541f509cc2304ebd15e7629f2c6b6, type: 3}
   m_Name: 
@@ -567,8 +567,11 @@ GameObject:
   - component: {fileID: 638655818}
   - component: {fileID: 638655817}
   - component: {fileID: 638655819}
+  - component: {fileID: 638655821}
+  - component: {fileID: 638655820}
+  - component: {fileID: 638655822}
   m_Layer: 0
-  m_Name: New Sprite (5)
+  m_Name: shoot
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -661,6 +664,64 @@ MonoBehaviour:
     i15: 0
   m_ServerOnly: 0
   m_LocalPlayerAuthority: 0
+--- !u!61 &638655820
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 638655816}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0.049999997, y: 0.049999997, z: 0.049999997, w: 0.049999997}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 0.16, y: 0.16}
+    newSize: {x: 0.16, y: 0.16}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 0.16, y: 0.16}
+  m_EdgeRadius: 0
+--- !u!114 &638655821
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 638655816}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 78b09c115977ce841beac160ce224c77, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 10
+  stop: 5
+  target: {fileID: 0}
+--- !u!114 &638655822
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 638655816}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 01b02570ec87515419d62deb73f02ead, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  range: 2.87
+  fireRate: 1
+  enemyTag: Player
+  partToRotate: {fileID: 638655818}
+  turnSpeed: 10
+  bulletPrefab: {fileID: 1907462161895352, guid: 0f579383d1b8483498aef8c142c27519,
+    type: 2}
+  firePoint: {fileID: 638655818}
 --- !u!1 &700248229
 GameObject:
   m_ObjectHideFlags: 0
@@ -798,9 +859,11 @@ GameObject:
   - component: {fileID: 740952171}
   - component: {fileID: 740952170}
   - component: {fileID: 740952172}
+  - component: {fileID: 740952175}
+  - component: {fileID: 740952173}
   m_Layer: 0
-  m_Name: New Sprite (4)
-  m_TagString: Player
+  m_Name: Ceeper
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -892,6 +955,47 @@ MonoBehaviour:
     i15: 0
   m_ServerOnly: 0
   m_LocalPlayerAuthority: 0
+--- !u!114 &740952173
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 740952169}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fb60ba9ed6e1ea4db7758638f8da212, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  target: {fileID: 1691578009}
+  moveSpeed: 3
+  rotationSpeed: 5
+  impactEffect: {fileID: 1749791422267346, guid: 6396b4a7e3f1b39408cd287b5e6b8b97,
+    type: 2}
+--- !u!61 &740952175
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 740952169}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0.049999997, y: 0.049999997, z: 0.049999997, w: 0.049999997}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 0.16, y: 0.16}
+    newSize: {x: 0.16, y: 0.16}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 0.16, y: 0.16}
+  m_EdgeRadius: 0
 --- !u!1 &898247041
 GameObject:
   m_ObjectHideFlags: 0
@@ -1522,6 +1626,10 @@ Prefab:
     - target: {fileID: 4967482581128596, guid: 7fe7c64c2e4e2184f9e9fedb70775611, type: 2}
       propertyPath: m_RootOrder
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1517318312412712, guid: 7fe7c64c2e4e2184f9e9fedb70775611, type: 2}
+      propertyPath: m_TagString
+      value: Enemy
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 7fe7c64c2e4e2184f9e9fedb70775611, type: 2}

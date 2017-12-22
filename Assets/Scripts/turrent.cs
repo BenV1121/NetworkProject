@@ -68,7 +68,7 @@ public class turrent : NetworkBehaviour {
 
         if (fireCountdown <= 0f)
         {
-            CmdShoot();
+            Shoot();
             fireCountdown = 1f / fireRate;
         }
 
@@ -76,7 +76,7 @@ public class turrent : NetworkBehaviour {
 
     }
  
-    void CmdShoot()
+    void Shoot()
     {
         GameObject bulletGO = (Instantiate(bulletPrefab, firePoint.position, firePoint.rotation));
         NetworkServer.Spawn(bulletGO);

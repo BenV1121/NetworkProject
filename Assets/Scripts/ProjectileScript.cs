@@ -55,12 +55,12 @@ public class ProjectileScript : NetworkBehaviour
             
             if(boss.state == BossScript.bossState.damaged)
             {
-                NetworkServer.Spawn(Instantiate(noDamageEffect, gameObject.transform.position, gameObject.transform.rotation));
+                NetworkServer.Spawn(Instantiate(hitEffect, gameObject.transform.position, gameObject.transform.rotation));
             }
-            else
+            else if(boss.state == BossScript.bossState.invincible)
             {
                 StartCoroutine(DestroyAfterTime(2));
-                NetworkServer.Spawn(Instantiate(hitEffect, gameObject.transform.position, gameObject.transform.rotation));
+                NetworkServer.Spawn(Instantiate(noDamageEffect, gameObject.transform.position, gameObject.transform.rotation));
             }
         }
     }

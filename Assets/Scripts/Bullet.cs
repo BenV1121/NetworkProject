@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Networking;
@@ -17,8 +18,10 @@ public void Awake()
     }
     public void Seek(Transform _target)
     {
+        Debug.Assert(_target != null);
+
         target = _target;
-         dir = target.position - transform.position;
+        dir = target.position - transform.position;
     }
     
     // Update is called once per frame

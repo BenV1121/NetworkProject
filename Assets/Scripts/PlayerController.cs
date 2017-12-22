@@ -42,6 +42,10 @@ public class PlayerController : NetworkBehaviour
 
     public Gun gun;
 
+    public HeadRotation rotator;
+    public Transform gunHead;
+    public Transform firePoint;
+
     public float health
     { get { return _health; } }
 
@@ -54,6 +58,23 @@ public class PlayerController : NetworkBehaviour
     public bool isSF;
 
     public float mfLimit = 400;
+
+    void Awake()
+    {
+
+        rotator = GetComponentInChildren<HeadRotation>();
+
+        if (rotator != null)
+        {
+            //gunHead = rotator.transform.Find("gunHead_0");
+
+            //if(gunHead != null)
+            //{
+
+            //}
+            firePoint = rotator.transform.Find("FirePoint");
+        }
+    }
 
     // Use this for initialization
     void Start ()
@@ -87,12 +108,17 @@ public class PlayerController : NetworkBehaviour
         speedBoostTimer = 0;
     }
 
+    public override void OnStartLocalPlayer()
+    {
+        GetComponent<SpriteRenderer>().material.color = Color.red;
+    }
+
     // Get the direction to fire the bullet in
     private Vector2 bulletDirectionVector
     {
         get
         {
-            Vector2 flatPosition = new Vector2(transform.position.x, transform.position.y);
+            Vector2 flatPosition = new Vector2(firePoint.position.x, firePoint.position.y);
             Vector2 targetPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 
             return (targetPosition - flatPosition).normalized;
@@ -123,7 +149,8 @@ public class PlayerController : NetworkBehaviour
     [Command]
     private void CmdFire(Vector2 dir)
     {
-        ProjectileScript projectileInstance = Instantiate(projectile, transform.position, Quaternion.identity) as ProjectileScript;
+        Debug.Log("recieving " + firePoint.position);
+        ProjectileScript projectileInstance = Instantiate(projectile, firePoint.position, Quaternion.identity) as ProjectileScript;
         //projectileInstance.SetOwner(this);
         projectileInstance.direction = dir;
         NetworkServer.Spawn(projectileInstance.gameObject);
@@ -184,7 +211,7 @@ public class PlayerController : NetworkBehaviour
         {
             if (Input.GetButtonDown("Fire1"))
             {
-                if(hasAuthority)
+                if (hasAuthority)
                     df.CmdFire(bulletDirectionVector);
             }
         }

@@ -28,7 +28,7 @@ public class EnemyScript : NetworkBehaviour
 
         if (isDead == true)
         {
-            Death();
+            CmdDeath();
         }
     }
 
@@ -41,9 +41,10 @@ public class EnemyScript : NetworkBehaviour
         }
     }
 
-    void Death()
+    [Command]
+    void CmdDeath()
     {
-        Destroy(gameObject);
-        Instantiate(deathEffect, gameObject.transform.position, gameObject.transform.rotation);
+        NetworkServer.Destroy(gameObject);
+        NetworkServer.Spawn(Instantiate(deathEffect, gameObject.transform.position, gameObject.transform.rotation));
     }
 }

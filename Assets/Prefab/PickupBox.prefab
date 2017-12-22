@@ -140,6 +140,9 @@ MonoBehaviour:
   powerUps:
   - {fileID: 1055323241471984, guid: 22dbf3a8490f0554c928f8e517f1fa1f, type: 2}
   - {fileID: 1649539127438208, guid: 4f46063c1545a27448a281ed020f0bb8, type: 2}
+  - {fileID: 1055323241471984, guid: 22dbf3a8490f0554c928f8e517f1fa1f, type: 2}
+  - {fileID: 1649539127438208, guid: 4f46063c1545a27448a281ed020f0bb8, type: 2}
+  - {fileID: 1822740085646298, guid: a9d07b82409a1f94ca4a4c9ebb54422f, type: 2}
 --- !u!212 &212770346875670490
 SpriteRenderer:
   m_ObjectHideFlags: 1

@@ -7,6 +7,7 @@ public class BossHandScript : NetworkBehaviour
 {
     public float health = 250;
     public bool attackFinish = false;
+    public bool desperationFinish = false;
     public bool dropItem = false;
 
     public float attackTime = 3;
@@ -66,6 +67,11 @@ public class BossHandScript : NetworkBehaviour
         {
             anim.SetBool("attackTimerOff", false);
             attackTime = 6;
+        }
+
+        if(desperationFinish == true)
+        {
+            anim.SetBool("desperate", false);
         }
 
         if (dropItem == true)

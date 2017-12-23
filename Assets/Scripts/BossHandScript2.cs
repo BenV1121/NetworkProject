@@ -8,6 +8,7 @@ public class BossHandScript2 : NetworkBehaviour
 {
     public float health = 250;
     public bool attackFinish = false;
+    public bool desperationFinish = false;
     public bool dropItem = false;
 
     public float attackTime = 6;
@@ -58,15 +59,20 @@ public class BossHandScript2 : NetworkBehaviour
             }
         }
 
-        if (state == handState.desperation && bossH.state == BossHandScript.handState.desperation)
+        if (state == handState.desperation /*&& bossH.state == BossHandScript.handState.damaged*/)
         {
-
+            anim.SetBool("desperate", true);
         }
 
         if (attackFinish == true)
         {
             anim.SetBool("attackTimerOff", false);
             attackTime = 6;
+        }
+
+        if (desperationFinish == true)
+        {
+            anim.SetBool("desperate", false);
         }
 
         if (dropItem == true)

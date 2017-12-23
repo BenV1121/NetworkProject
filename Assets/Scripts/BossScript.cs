@@ -96,7 +96,7 @@ public class BossScript : NetworkBehaviour
 
             hand1.state = BossHandScript.handState.desperation;
             hand1.anim.SetBool("leftIsDamaged", false);
-            hand2.state = BossHandScript2.handState.vulnerable;
+            hand2.state = BossHandScript2.handState.desperation;
             hand2.anim.SetBool("rightIsDamaged", false);
         }
 

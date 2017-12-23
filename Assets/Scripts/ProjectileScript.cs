@@ -39,9 +39,9 @@ public class ProjectileScript : NetworkBehaviour
 
     private void OnTriggerEnter2D(Collider2D collider)
     {
-        if (collider.gameObject.tag == "Enemy")
+        if (collider.gameObject.tag == "Enemy" || collider.gameObject.tag == "Floor")
         {
-            StartCoroutine(DestroyAfterTime(1));
+            StartCoroutine(DestroyAfterTime(.1f));
 
             NetworkServer.Spawn(Instantiate(hitEffect, transform.position, gameObject.transform.rotation));
         }
@@ -49,6 +49,7 @@ public class ProjectileScript : NetworkBehaviour
 
     IEnumerator DestroyAfterTime(float time)
     {
+        GetComponent<Collider2D>().enabled = false;
         yield return new WaitForSeconds(time);
         NetworkServer.Destroy(gameObject);
     }

@@ -11,11 +11,14 @@ public class AnoyingPlayer : NetworkBehaviour {
 
     // Use this for initialization
     void Start () {
-		
+        
 	}
 	
 	// Update is called once per frame
 	void Update () {
+
+        if(target == null)
+            target = PlayerManager.players[(int)Random.Range(0, PlayerManager.players.Count)].gameObject;
 
         transform.position = Vector3.MoveTowards(transform.position, target.transform.position, moveSpeed * Time.deltaTime);
         Vector3 vectorToTarget = target.transform.position - transform.position;
@@ -31,12 +34,13 @@ public class AnoyingPlayer : NetworkBehaviour {
 
         else
         {
-            GameObject effectIns = (GameObject)Instantiate(impactEffect, transform.position, transform.rotation);
-            NetworkServer.Spawn(effectIns);
+            if(other.gameObject == target)
+            {
+                GameObject effectIns = (GameObject)Instantiate(impactEffect, transform.position, transform.rotation);
+                NetworkServer.Spawn(effectIns);
 
-
-            NetworkServer.Destroy(target.gameObject);
-            NetworkServer.Destroy(gameObject);
+                NetworkServer.Destroy(gameObject);
+            }
         }
 
     }

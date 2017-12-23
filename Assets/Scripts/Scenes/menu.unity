@@ -165,7 +165,7 @@ MonoBehaviour:
   m_AutoCreatePlayer: 1
   m_PlayerSpawnMethod: 0
   m_OfflineScene: menu
-  m_OnlineScene: MainLevel
+  m_OnlineScene: Boss
   m_SpawnPrefabs:
   - {fileID: 1043511558521530, guid: 7581ff74fbd65d34b867445c8dafae75, type: 2}
   - {fileID: 1907462161895352, guid: 0f579383d1b8483498aef8c142c27519, type: 2}
@@ -175,6 +175,7 @@ MonoBehaviour:
   - {fileID: 1749791422267346, guid: 6396b4a7e3f1b39408cd287b5e6b8b97, type: 2}
   - {fileID: 1163733057714060, guid: 0cb46a9d311a91748b5988170404eec6, type: 2}
   - {fileID: 1105476029987272, guid: 88e16e706799b70479309f0b0a92db55, type: 2}
+  - {fileID: 1822740085646298, guid: a9d07b82409a1f94ca4a4c9ebb54422f, type: 2}
   m_CustomConfig: 1
   m_MaxConnections: 4
   m_ConnectionConfig:

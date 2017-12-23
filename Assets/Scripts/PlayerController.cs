@@ -11,6 +11,7 @@ public class PlayerController : NetworkBehaviour
     public float speed;
     float force;
 
+    multyPLayerCamera cam;
     public GameObject deathEffect;
 
     [SyncVar]
@@ -78,7 +79,9 @@ public class PlayerController : NetworkBehaviour
     // Use this for initialization
     void Start ()
     {
-            multyPLayerCamera cam = (FindObjectsOfType(typeof(multyPLayerCamera)) as multyPLayerCamera[])[0];
+        PlayerManager.players.Add(this);
+
+            cam = (FindObjectsOfType(typeof(multyPLayerCamera)) as multyPLayerCamera[])[0];
             cam.targets.Add(transform);
         if (isLocalPlayer) {
             localPlayerController = this;
@@ -266,7 +269,9 @@ public class PlayerController : NetworkBehaviour
     [Command]
     private void CmdDie()
     {
-        
+        cam.targets.Remove(transform);
+        PlayerManager.players.Remove(this);
+
         if(!isServer)
             Network.Disconnect(200);
 

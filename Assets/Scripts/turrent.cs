@@ -1,8 +1,9 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Networking;
 
-public class turrent : MonoBehaviour {
+public class turrent : NetworkBehaviour {
     private Transform target;
 
     [Header("Attributes")]
@@ -63,7 +64,7 @@ public class turrent : MonoBehaviour {
         Vector3 dir = target.position - transform.position;
         Quaternion lookRotation = Quaternion.LookRotation(dir);
         Vector3 rotation = Quaternion.Lerp(partToRotate.rotation, lookRotation, Time.deltaTime * turnSpeed).eulerAngles;
-        partToRotate.rotation = Quaternion.Euler(0f, 0f, rotation.z);
+        partToRotate.rotation = Quaternion.Euler(0f,0f, rotation.z);
 
         if (fireCountdown <= 0f)
         {
@@ -71,13 +72,14 @@ public class turrent : MonoBehaviour {
             fireCountdown = 1f / fireRate;
         }
 
-        fireCountdown -= Time.deltaTime;
+            fireCountdown -= Time.deltaTime;
 
     }
-
+ 
     void Shoot()
     {
-        GameObject bulletGO = (GameObject)Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
+        GameObject bulletGO = (Instantiate(bulletPrefab, firePoint.position, firePoint.rotation));
+        NetworkServer.Spawn(bulletGO);
         Bullet bullet = bulletGO.GetComponent<Bullet>();
 
         if (bullet != null)

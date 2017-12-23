@@ -3298,7 +3298,7 @@ MonoBehaviour:
   offset: {x: 0, y: 0, z: -10}
   smooth: 0.5
   velocity: {x: 0, y: 0, z: 0}
-  maxZoom: 100
+  maxZoom: 50
   minZoom: 10
   zoomLimit: 50
 --- !u!114 &644427155
